@@ -40,3 +40,20 @@ library(here)
 
 
 <!-- Replace the below with bit about you. -->
+##Research Interests
+
+I am interested in international organizations, specifically regional organizations. I'm also interested in the role of international law in international relations.
+
+##Questions I Hope to Answer
+I'm curious about why and how states in a region become more federated or less federated, and why this varies across regions.
+
+##Potential Methods
+I'm interested in survey data to capture domestic opinions, data-as-text to analyze treaty language and discourse of leaders.
+
+##Potentially relevant data:
+Records of parliamentary meetings.
+Speeches by leaders
+Macroeconomic data
+Migration data
+Public opinion data
+Interview data with elites and citizens.
