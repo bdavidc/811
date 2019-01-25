@@ -51,9 +51,16 @@ I'm curious about why and how states in a region become more federated or less f
 I'm interested in survey data to capture domestic opinions, data-as-text to analyze treaty language and discourse of leaders.
 
 ##Potentially relevant data:
-Records of parliamentary meetings.
-Speeches by leaders
-Macroeconomic data
-Migration data
-Public opinion data
-Interview data with elites and citizens.
+Relevant data for these questions include:
+ 
+1. Records of parliamentary meetings.
+
+2. Speeches by leaders
+ 
+3. Macroeconomic data
+ 
+4. Migration data
+
+5. Public opinion data
+ 
+6. Interview data with elites and citizens.
