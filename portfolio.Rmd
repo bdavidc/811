@@ -64,3 +64,5 @@ Relevant data for these questions include:
 5. Public opinion data
  
 6. Interview data with elites and citizens.
+
+Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.
