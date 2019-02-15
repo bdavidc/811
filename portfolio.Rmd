@@ -67,6 +67,7 @@ Relevant data for these questions include:
 
 Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.
 
+<<<<<<< HEAD
 #Assignment 2:
 I have compiled a dataset of member states of international courts around the world. I summarize the data as follows -- this gives us the average number of courts that a state belongs to (7), as well as the variance of this measure (6), which is not surprisingly quite high.
 
@@ -76,3 +77,13 @@ dataset <- read.csv("Dataset ready for summary.csv")
 summary(dataset)
 variance(dataset)
 ```
+=======
+<!--
+David, 
+These data seem like good choices; perhaps you will be merging treaty and economic data? Your task now is to select a few variables of interests. Try writing a few lines of R code that loads these data from their URL and then uses select() to trim it down to the columns you want. Make sure to include any ID columns. 
+If the files are very large, you may want to make a short .R script that loads from the URL, selects the variables you want, and then saves your new, smaller data file in a folder called "data" (make sure to save this script in your 811 folder, commit it, and push it). This portfolio page can then load this smaller data file from that folder using here(data/YourNewDataFile).
+If you want to start working with treaty text data right off the bat, let me know and we can jump ahead to some text analysis basics--we will need to at least count some word frequencies so you have something to plot :) 
+Best,
+Devin
+-->
+>>>>>>> 78a98972485d4a77e901b1a099f71c27a1acf90c

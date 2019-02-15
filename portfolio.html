@@ -178,6 +178,919 @@ $(document).ready(function () {
 <li><p>Interview data with elites and citizens.</p></li>
 </ol>
 <p>Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD #Assignment 2: I have compiled a dataset of member states of international courts around the world. I summarize the data as follows – this gives us the average number of courts that a state belongs to (7), as well as the variance of this measure (6), which is not surprisingly quite high.</p>
+<pre class="r"><code>dataset &lt;- read.csv(&quot;Dataset ready for summary.csv&quot;)
+
+summary(dataset)</code></pre>
+<pre><code>##                  X       African.Court.on.Human.and.Peoples..Rights
+##  Afghanistan      :  1   Min.   :0.0000                            
+##  Albania          :  1   1st Qu.:0.0000                            
+##  Algeria          :  1   Median :0.0000                            
+##  Andorra          :  1   Mean   :0.1478                            
+##  Angola           :  1   3rd Qu.:0.0000                            
+##  Antigua &amp; Barbuda:  1   Max.   :1.0000                            
+##  (Other)          :197                                             
+##  Benelux.Court.of.Justice Caribbean.Court.of.Justice
+##  Min.   :0.00000          Min.   :0.00000           
+##  1st Qu.:0.00000          1st Qu.:0.00000           
+##  Median :0.00000          Median :0.00000           
+##  Mean   :0.01478          Mean   :0.05911           
+##  3rd Qu.:0.00000          3rd Qu.:0.00000           
+##  Max.   :1.00000          Max.   :1.00000           
+##                                                     
+##  CEMAC.Court.of.Justice Central.American.Court.of.Justice
+##  Min.   :0.00000        Min.   :0.00000                  
+##  1st Qu.:0.00000        1st Qu.:0.00000                  
+##  Median :0.00000        Median :0.00000                  
+##  Mean   :0.02463        Mean   :0.02956                  
+##  3rd Qu.:0.00000        3rd Qu.:0.00000                  
+##  Max.   :1.00000        Max.   :1.00000                  
+##                                                          
+##  COMESA.Court.of.Justice Court.of.Conciliation.and.Arbitration
+##  Min.   :0.0000          Min.   :0.0000                       
+##  1st Qu.:0.0000          1st Qu.:0.0000                       
+##  Median :0.0000          Median :0.0000                       
+##  Mean   :0.0936          Mean   :0.2808                       
+##  3rd Qu.:0.0000          3rd Qu.:1.0000                       
+##  Max.   :1.0000          Max.   :1.0000                       
+##                                                               
+##  General.Court.of.the.European.Union
+##  Min.   :0.000                      
+##  1st Qu.:0.000                      
+##  Median :0.000                      
+##  Mean   :0.133                      
+##  3rd Qu.:0.000                      
+##  Max.   :1.000                      
+##                                     
+##  Court.of.Justice.of.the.Andean.Community
+##  Min.   :0.00000                         
+##  1st Qu.:0.00000                         
+##  Median :0.00000                         
+##  Mean   :0.02463                         
+##  3rd Qu.:0.00000                         
+##  Max.   :1.00000                         
+##                                          
+##  Court.of.Justice.of.the.Economic.Community.of.West.African.States
+##  Min.   :0.00000                                                  
+##  1st Qu.:0.00000                                                  
+##  Median :0.00000                                                  
+##  Mean   :0.07389                                                  
+##  3rd Qu.:0.00000                                                  
+##  Max.   :1.00000                                                  
+##                                                                   
+##  Court.of.Justice.of.the.European.Communities
+##  Min.   :0.0000                              
+##  1st Qu.:0.0000                              
+##  Median :0.0000                              
+##  Mean   :0.1379                              
+##  3rd Qu.:0.0000                              
+##  Max.   :1.0000                              
+##                                              
+##  East.African.Court.of.Justice European.Court.of.Human.Rights
+##  Min.   :0.00000               Min.   :0.0000                
+##  1st Qu.:0.00000               1st Qu.:0.0000                
+##  Median :0.00000               Median :0.0000                
+##  Mean   :0.01478               Mean   :0.2266                
+##  3rd Qu.:0.00000               3rd Qu.:0.0000                
+##  Max.   :1.00000               Max.   :1.0000                
+##                                                              
+##  European.Free.Trade.Agreement.Court Inter.American.Court.of.Human.Rights
+##  Min.   :0.00000                     Min.   :0.0000                      
+##  1st Qu.:0.00000                     1st Qu.:0.0000                      
+##  Median :0.00000                     Median :0.0000                      
+##  Mean   :0.01478                     Mean   :0.1133                      
+##  3rd Qu.:0.00000                     3rd Qu.:0.0000                      
+##  Max.   :1.00000                     Max.   :1.0000                      
+##                                                                          
+##  International.Centre.for.Settlement.of.Investment.Disputes
+##  Min.   :0.0000                                            
+##  1st Qu.:1.0000                                            
+##  Median :1.0000                                            
+##  Mean   :0.7783                                            
+##  3rd Qu.:1.0000                                            
+##  Max.   :1.0000                                            
+##                                                            
+##  International.Court.of.Justice International.Criminal.Court
+##  Min.   :0.000                  Min.   :0.0000              
+##  1st Qu.:1.000                  1st Qu.:1.0000              
+##  Median :1.000                  Median :1.0000              
+##  Mean   :0.936                  Mean   :0.7635              
+##  3rd Qu.:1.000                  3rd Qu.:1.0000              
+##  Max.   :1.000                  Max.   :1.0000              
+##                                                             
+##  International.Tribunal.for.the.Law.of.the.Sea
+##  Min.   :0.0000                               
+##  1st Qu.:1.0000                               
+##  Median :1.0000                               
+##  Mean   :0.8227                               
+##  3rd Qu.:1.0000                               
+##  Max.   :1.0000                               
+##                                               
+##  NAFTA.Dispute.Settlement.Panels
+##  Min.   :0.00000                
+##  1st Qu.:0.00000                
+##  Median :0.00000                
+##  Mean   :0.01478                
+##  3rd Qu.:0.00000                
+##  Max.   :1.00000                
+##                                 
+##  OHADA.Common.Court.of.Justice.and.Arbitration
+##  Min.   :0.00000                              
+##  1st Qu.:0.00000                              
+##  Median :0.00000                              
+##  Mean   :0.08374                              
+##  3rd Qu.:0.00000                              
+##  Max.   :1.00000                              
+##                                               
+##  Permanent.Court.of.Arbitration WAEMU.Court.of.Justice
+##  Min.   :0.0000                 Min.   :0.00000       
+##  1st Qu.:0.0000                 1st Qu.:0.00000       
+##  Median :1.0000                 Median :0.00000       
+##  Mean   :0.5911                 Mean   :0.03941       
+##  3rd Qu.:1.0000                 3rd Qu.:0.00000       
+##  Max.   :1.0000                 Max.   :1.00000       
+##                                                       
+##  WIPO.Arbitration.and.Mediation.Center
+##  Min.   :0.0000                       
+##  1st Qu.:1.0000                       
+##  Median :1.0000                       
+##  Mean   :0.9409                       
+##  3rd Qu.:1.0000                       
+##  Max.   :1.0000                       
+##                                       
+##  WTO.Dispute.Settlement.Body...Appellate.Body     Total       
+##  Min.   :0.0000                               Min.   : 1.000  
+##  1st Qu.:1.0000                               1st Qu.: 6.000  
+##  Median :1.0000                               Median : 7.000  
+##  Mean   :0.8079                               Mean   : 7.167  
+##  3rd Qu.:1.0000                               3rd Qu.: 9.000  
+##  Max.   :1.0000                               Max.   :12.000  
+## </code></pre>
+<pre class="r"><code>var(dataset)</code></pre>
+<pre><code>##                                                                    X
+## X                                                                 NA
+## African.Court.on.Human.and.Peoples..Rights                        NA
+## Benelux.Court.of.Justice                                          NA
+## Caribbean.Court.of.Justice                                        NA
+## CEMAC.Court.of.Justice                                            NA
+## Central.American.Court.of.Justice                                 NA
+## COMESA.Court.of.Justice                                           NA
+## Court.of.Conciliation.and.Arbitration                             NA
+## General.Court.of.the.European.Union                               NA
+## Court.of.Justice.of.the.Andean.Community                          NA
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States NA
+## Court.of.Justice.of.the.European.Communities                      NA
+## East.African.Court.of.Justice                                     NA
+## European.Court.of.Human.Rights                                    NA
+## European.Free.Trade.Agreement.Court                               NA
+## Inter.American.Court.of.Human.Rights                              NA
+## International.Centre.for.Settlement.of.Investment.Disputes        NA
+## International.Court.of.Justice                                    NA
+## International.Criminal.Court                                      NA
+## International.Tribunal.for.the.Law.of.the.Sea                     NA
+## NAFTA.Dispute.Settlement.Panels                                   NA
+## OHADA.Common.Court.of.Justice.and.Arbitration                     NA
+## Permanent.Court.of.Arbitration                                    NA
+## WAEMU.Court.of.Justice                                            NA
+## WIPO.Arbitration.and.Mediation.Center                             NA
+## WTO.Dispute.Settlement.Body...Appellate.Body                      NA
+## Total                                                             NA
+##                                                                   African.Court.on.Human.and.Peoples..Rights
+## X                                                                                                         NA
+## African.Court.on.Human.and.Peoples..Rights                                                       0.126566844
+## Benelux.Court.of.Justice                                                                        -0.002194801
+## Caribbean.Court.of.Justice                                                                      -0.008779203
+## CEMAC.Court.of.Justice                                                                           0.016143979
+## Central.American.Court.of.Justice                                                               -0.004389602
+## COMESA.Court.of.Justice                                                                          0.025703556
+## Court.of.Conciliation.and.Arbitration                                                           -0.041701214
+## General.Court.of.the.European.Union                                                             -0.019753207
+## Court.of.Justice.of.the.Andean.Community                                                        -0.003658001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                0.038530947
+## Court.of.Justice.of.the.European.Communities                                                    -0.020484807
+## East.African.Court.of.Justice                                                                    0.012656684
+## European.Court.of.Human.Rights                                                                  -0.033653612
+## European.Free.Trade.Agreement.Court                                                             -0.002194801
+## Inter.American.Court.of.Human.Rights                                                            -0.016826806
+## International.Centre.for.Settlement.of.Investment.Disputes                                       0.018070526
+## International.Court.of.Justice                                                                   0.004560308
+## International.Criminal.Court                                                                     0.010364337
+## International.Tribunal.for.the.Law.of.the.Sea                                                    0.001585134
+## NAFTA.Dispute.Settlement.Panels                                                                 -0.002194801
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                    0.046968736
+## Permanent.Court.of.Arbitration                                                                  -0.033336585
+## WAEMU.Court.of.Justice                                                                           0.028800663
+## WIPO.Arbitration.and.Mediation.Center                                                            0.003828708
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                     0.008730430
+## Total                                                                                            0.153343413
+##                                                                   Benelux.Court.of.Justice
+## X                                                                                       NA
+## African.Court.on.Human.and.Peoples..Rights                                   -0.0021948008
+## Benelux.Court.of.Justice                                                      0.0146320051
+## Caribbean.Court.of.Justice                                                   -0.0008779203
+## CEMAC.Court.of.Justice                                                       -0.0003658001
+## Central.American.Court.of.Justice                                            -0.0004389602
+## COMESA.Court.of.Justice                                                      -0.0013900405
+## Court.of.Conciliation.and.Arbitration                                         0.0106813637
+## General.Court.of.the.European.Union                                           0.0128761645
+## Court.of.Justice.of.the.Andean.Community                                     -0.0003658001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States            -0.0010974004
+## Court.of.Justice.of.the.European.Communities                                  0.0128030044
+## East.African.Court.of.Justice                                                -0.0002194801
+## European.Court.of.Human.Rights                                                0.0114861240
+## European.Free.Trade.Agreement.Court                                          -0.0002194801
+## Inter.American.Court.of.Human.Rights                                         -0.0016826806
+## International.Centre.for.Settlement.of.Investment.Disputes                    0.0032922011
+## International.Court.of.Justice                                                0.0009510803
+## International.Criminal.Court                                                  0.0035116812
+## International.Tribunal.for.the.Law.of.the.Sea                                 0.0026337609
+## NAFTA.Dispute.Settlement.Panels                                              -0.0002194801
+## OHADA.Common.Court.of.Justice.and.Arbitration                                -0.0012437204
+## Permanent.Court.of.Arbitration                                                0.0060722821
+## WAEMU.Court.of.Justice                                                       -0.0005852802
+## WIPO.Arbitration.and.Mediation.Center                                         0.0008779203
+## WTO.Dispute.Settlement.Body...Appellate.Body                                  0.0028532410
+## Total                                                                         0.0717699849
+##                                                                   Caribbean.Court.of.Justice
+## X                                                                                         NA
+## African.Court.on.Human.and.Peoples..Rights                                     -0.0087792030
+## Benelux.Court.of.Justice                                                       -0.0008779203
+## Caribbean.Court.of.Justice                                                      0.0558942594
+## CEMAC.Court.of.Justice                                                         -0.0014632005
+## Central.American.Court.of.Justice                                              -0.0017558406
+## COMESA.Court.of.Justice                                                        -0.0055601619
+## Court.of.Conciliation.and.Arbitration                                          -0.0166804858
+## General.Court.of.the.European.Union                                            -0.0079012827
+## Court.of.Justice.of.the.Andean.Community                                       -0.0014632005
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States              -0.0043896015
+## Court.of.Justice.of.the.European.Communities                                   -0.0081939228
+## East.African.Court.of.Justice                                                  -0.0008779203
+## European.Court.of.Human.Rights                                                 -0.0134614447
+## European.Free.Trade.Agreement.Court                                            -0.0008779203
+## Inter.American.Court.of.Human.Rights                                            0.0180217529
+## International.Centre.for.Settlement.of.Investment.Disputes                     -0.0016826806
+## International.Court.of.Justice                                                  0.0038043213
+## International.Criminal.Court                                                    0.0140467249
+## International.Tribunal.for.the.Law.of.the.Sea                                  -0.0092669365
+## NAFTA.Dispute.Settlement.Panels                                                -0.0008779203
+## OHADA.Common.Court.of.Justice.and.Arbitration                                  -0.0049748817
+## Permanent.Court.of.Arbitration                                                 -0.0202653270
+## WAEMU.Court.of.Justice                                                         -0.0023411208
+## WIPO.Arbitration.and.Mediation.Center                                           0.0035116812
+## WTO.Dispute.Settlement.Body...Appellate.Body                                    0.0114129640
+## Total                                                                          -0.0049992684
+##                                                                   CEMAC.Court.of.Justice
+## X                                                                                     NA
+## African.Court.on.Human.and.Peoples..Rights                                  0.0161439789
+## Benelux.Court.of.Justice                                                   -0.0003658001
+## Caribbean.Court.of.Justice                                                 -0.0014632005
+## CEMAC.Court.of.Justice                                                      0.0241428084
+## Central.American.Court.of.Justice                                          -0.0007316003
+## COMESA.Court.of.Justice                                                    -0.0023167341
+## Court.of.Conciliation.and.Arbitration                                      -0.0069502024
+## General.Court.of.the.European.Union                                        -0.0032922011
+## Court.of.Justice.of.the.Andean.Community                                   -0.0006096669
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States          -0.0018290006
+## Court.of.Justice.of.the.European.Communities                               -0.0034141345
+## East.African.Court.of.Justice                                              -0.0003658001
+## European.Court.of.Human.Rights                                             -0.0056089353
+## European.Free.Trade.Agreement.Court                                        -0.0003658001
+## Inter.American.Court.of.Human.Rights                                       -0.0028044676
+## International.Centre.for.Settlement.of.Investment.Disputes                  0.0005365069
+## International.Court.of.Justice                                              0.0015851339
+## International.Criminal.Court                                                0.0009023070
+## International.Tribunal.for.the.Law.of.the.Sea                               0.0043896015
+## NAFTA.Dispute.Settlement.Panels                                            -0.0003658001
+## OHADA.Common.Court.of.Justice.and.Arbitration                               0.0226796079
+## Permanent.Court.of.Arbitration                                             -0.0096815100
+## WAEMU.Court.of.Justice                                                     -0.0009754670
+## WIPO.Arbitration.and.Mediation.Center                                       0.0014632005
+## WTO.Dispute.Settlement.Body...Appellate.Body                               -0.0001950934
+## Total                                                                       0.0305077306
+##                                                                   Central.American.Court.of.Justice
+## X                                                                                                NA
+## African.Court.on.Human.and.Peoples..Rights                                            -0.0043896015
+## Benelux.Court.of.Justice                                                              -0.0004389602
+## Caribbean.Court.of.Justice                                                            -0.0017558406
+## CEMAC.Court.of.Justice                                                                -0.0007316003
+## Central.American.Court.of.Justice                                                      0.0288250500
+## COMESA.Court.of.Justice                                                               -0.0027800810
+## Court.of.Conciliation.and.Arbitration                                                 -0.0083402429
+## General.Court.of.the.European.Union                                                   -0.0039506414
+## Court.of.Justice.of.the.Andean.Community                                              -0.0007316003
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                     -0.0021948008
+## Court.of.Justice.of.the.European.Communities                                          -0.0040969614
+## East.African.Court.of.Justice                                                         -0.0004389602
+## European.Court.of.Human.Rights                                                        -0.0067307223
+## European.Free.Trade.Agreement.Court                                                   -0.0004389602
+## Inter.American.Court.of.Human.Rights                                                   0.0263376091
+## International.Centre.for.Settlement.of.Investment.Disputes                             0.0065844023
+## International.Court.of.Justice                                                         0.0019021607
+## International.Criminal.Court                                                           0.0020728674
+## International.Tribunal.for.the.Law.of.the.Sea                                          0.0003170268
+## NAFTA.Dispute.Settlement.Panels                                                       -0.0004389602
+## OHADA.Common.Court.of.Justice.and.Arbitration                                         -0.0024874409
+## Permanent.Court.of.Arbitration                                                         0.0121445642
+## WAEMU.Court.of.Justice                                                                -0.0011705604
+## WIPO.Arbitration.and.Mediation.Center                                                  0.0017558406
+## WTO.Dispute.Settlement.Body...Appellate.Body                                           0.0057064820
+## Total                                                                                  0.0445300688
+##                                                                   COMESA.Court.of.Justice
+## X                                                                                      NA
+## African.Court.on.Human.and.Peoples..Rights                                    0.025703556
+## Benelux.Court.of.Justice                                                     -0.001390040
+## Caribbean.Court.of.Justice                                                   -0.005560162
+## CEMAC.Court.of.Justice                                                       -0.002316734
+## Central.American.Court.of.Justice                                            -0.002780081
+## COMESA.Court.of.Justice                                                       0.085255816
+## Court.of.Conciliation.and.Arbitration                                        -0.026410769
+## General.Court.of.the.European.Union                                          -0.012510364
+## Court.of.Justice.of.the.Andean.Community                                     -0.002316734
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States            -0.006950202
+## Court.of.Justice.of.the.European.Communities                                 -0.012973711
+## East.African.Court.of.Justice                                                 0.008510950
+## European.Court.of.Human.Rights                                               -0.021313954
+## European.Free.Trade.Agreement.Court                                          -0.001390040
+## Inter.American.Court.of.Human.Rights                                         -0.010656977
+## International.Centre.for.Settlement.of.Investment.Disputes                    0.005999122
+## International.Court.of.Justice                                                0.001073014
+## International.Criminal.Court                                                  0.007389163
+## International.Tribunal.for.the.Law.of.the.Sea                                -0.003121494
+## NAFTA.Dispute.Settlement.Panels                                              -0.001390040
+## OHADA.Common.Court.of.Justice.and.Arbitration                                 0.002024094
+## Permanent.Court.of.Arbitration                                                0.013705311
+## WAEMU.Court.of.Justice                                                       -0.003706775
+## WIPO.Arbitration.and.Mediation.Center                                         0.005560162
+## WTO.Dispute.Settlement.Body...Appellate.Body                                 -0.006681949
+## Total                                                                         0.033751158
+##                                                                   Court.of.Conciliation.and.Arbitration
+## X                                                                                                    NA
+## African.Court.on.Human.and.Peoples..Rights                                                 -0.041701214
+## Benelux.Court.of.Justice                                                                    0.010681364
+## Caribbean.Court.of.Justice                                                                 -0.016680486
+## CEMAC.Court.of.Justice                                                                     -0.006950202
+## Central.American.Court.of.Justice                                                          -0.008340243
+## COMESA.Court.of.Justice                                                                    -0.026410769
+## Court.of.Conciliation.and.Arbitration                                                       0.202945910
+## General.Court.of.the.European.Union                                                         0.096132273
+## Court.of.Justice.of.the.Andean.Community                                                   -0.006950202
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                          -0.020850607
+## Court.of.Justice.of.the.European.Communities                                                0.099692728
+## East.African.Court.of.Justice                                                              -0.004170121
+## European.Court.of.Human.Rights                                                              0.163780910
+## European.Free.Trade.Agreement.Court                                                         0.010681364
+## Inter.American.Court.of.Human.Rights                                                       -0.031970931
+## International.Centre.for.Settlement.of.Investment.Disputes                                  0.032848851
+## International.Court.of.Justice                                                              0.008169536
+## International.Criminal.Court                                                                0.032068478
+## International.Tribunal.for.the.Law.of.the.Sea                                               0.005487002
+## NAFTA.Dispute.Settlement.Panels                                                             0.005730869
+## OHADA.Common.Court.of.Justice.and.Arbitration                                              -0.023630688
+## Permanent.Court.of.Arbitration                                                              0.051016924
+## WAEMU.Court.of.Justice                                                                     -0.011120324
+## WIPO.Arbitration.and.Mediation.Center                                                       0.016680486
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                0.004706628
+## Total                                                                                       0.541847535
+##                                                                   General.Court.of.the.European.Union
+## X                                                                                                  NA
+## African.Court.on.Human.and.Peoples..Rights                                               -0.019753207
+## Benelux.Court.of.Justice                                                                  0.012876164
+## Caribbean.Court.of.Justice                                                               -0.007901283
+## CEMAC.Court.of.Justice                                                                   -0.003292201
+## Central.American.Court.of.Justice                                                        -0.003950641
+## COMESA.Court.of.Justice                                                                  -0.012510364
+## Court.of.Conciliation.and.Arbitration                                                     0.096132273
+## General.Court.of.the.European.Union                                                       0.115885480
+## Court.of.Justice.of.the.Andean.Community                                                 -0.003292201
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                        -0.009876603
+## Court.of.Justice.of.the.European.Communities                                              0.115227040
+## East.African.Court.of.Justice                                                            -0.001975321
+## European.Court.of.Human.Rights                                                            0.103375116
+## European.Free.Trade.Agreement.Court                                                      -0.001975321
+## Inter.American.Court.of.Human.Rights                                                     -0.015144125
+## International.Centre.for.Settlement.of.Investment.Disputes                                0.024679315
+## International.Court.of.Justice                                                            0.003609228
+## International.Criminal.Court                                                              0.031605131
+## International.Tribunal.for.the.Law.of.the.Sea                                             0.023703848
+## NAFTA.Dispute.Settlement.Panels                                                          -0.001975321
+## OHADA.Common.Court.of.Justice.and.Arbitration                                            -0.011193484
+## Permanent.Court.of.Arbitration                                                            0.054650539
+## WAEMU.Court.of.Justice                                                                   -0.005267522
+## WIPO.Arbitration.and.Mediation.Center                                                     0.007901283
+## WTO.Dispute.Settlement.Body...Appellate.Body                                              0.025679169
+## Total                                                                                     0.517216993
+##                                                                   Court.of.Justice.of.the.Andean.Community
+## X                                                                                                       NA
+## African.Court.on.Human.and.Peoples..Rights                                                   -0.0036580013
+## Benelux.Court.of.Justice                                                                     -0.0003658001
+## Caribbean.Court.of.Justice                                                                   -0.0014632005
+## CEMAC.Court.of.Justice                                                                       -0.0006096669
+## Central.American.Court.of.Justice                                                            -0.0007316003
+## COMESA.Court.of.Justice                                                                      -0.0023167341
+## Court.of.Conciliation.and.Arbitration                                                        -0.0069502024
+## General.Court.of.the.European.Union                                                          -0.0032922011
+## Court.of.Justice.of.the.Andean.Community                                                      0.0241428084
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                            -0.0018290006
+## Court.of.Justice.of.the.European.Communities                                                 -0.0034141345
+## East.African.Court.of.Justice                                                                -0.0003658001
+## European.Court.of.Human.Rights                                                               -0.0056089353
+## European.Free.Trade.Agreement.Court                                                          -0.0003658001
+## Inter.American.Court.of.Human.Rights                                                          0.0169975126
+## International.Centre.for.Settlement.of.Investment.Disputes                                   -0.0093644832
+## International.Court.of.Justice                                                                0.0015851339
+## International.Criminal.Court                                                                  0.0058528020
+## International.Tribunal.for.the.Law.of.the.Sea                                                -0.0104618836
+## NAFTA.Dispute.Settlement.Panels                                                              -0.0003658001
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                -0.0020728674
+## Permanent.Court.of.Arbitration                                                                0.0101204702
+## WAEMU.Court.of.Justice                                                                       -0.0009754670
+## WIPO.Arbitration.and.Mediation.Center                                                         0.0014632005
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                  0.0047554016
+## Total                                                                                         0.0107057504
+##                                                                   Court.of.Justice.of.the.Economic.Community.of.West.African.States
+## X                                                                                                                                NA
+## African.Court.on.Human.and.Peoples..Rights                                                                              0.038530947
+## Benelux.Court.of.Justice                                                                                               -0.001097400
+## Caribbean.Court.of.Justice                                                                                             -0.004389602
+## CEMAC.Court.of.Justice                                                                                                 -0.001829001
+## Central.American.Court.of.Justice                                                                                      -0.002194801
+## COMESA.Court.of.Justice                                                                                                -0.006950202
+## Court.of.Conciliation.and.Arbitration                                                                                  -0.020850607
+## General.Court.of.the.European.Union                                                                                    -0.009876603
+## Court.of.Justice.of.the.Andean.Community                                                                               -0.001829001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                                       0.068770424
+## Court.of.Justice.of.the.European.Communities                                                                           -0.010242404
+## East.African.Court.of.Justice                                                                                          -0.001097400
+## European.Court.of.Human.Rights                                                                                         -0.016826806
+## European.Free.Trade.Agreement.Court                                                                                    -0.001097400
+## Inter.American.Court.of.Human.Rights                                                                                   -0.008413403
+## International.Centre.for.Settlement.of.Investment.Disputes                                                              0.016461006
+## International.Court.of.Justice                                                                                          0.004755402
+## International.Criminal.Court                                                                                            0.012607911
+## International.Tribunal.for.the.Law.of.the.Sea                                                                          -0.001682681
+## NAFTA.Dispute.Settlement.Panels                                                                                        -0.001097400
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                                           0.038335853
+## Permanent.Court.of.Arbitration                                                                                         -0.019143540
+## WAEMU.Court.of.Justice                                                                                                  0.036677559
+## WIPO.Arbitration.and.Mediation.Center                                                                                   0.004389602
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                                            0.014266205
+## Total                                                                                                                   0.126176657
+##                                                                   Court.of.Justice.of.the.European.Communities
+## X                                                                                                           NA
+## African.Court.on.Human.and.Peoples..Rights                                                        -0.020484807
+## Benelux.Court.of.Justice                                                                           0.012803004
+## Caribbean.Court.of.Justice                                                                        -0.008193923
+## CEMAC.Court.of.Justice                                                                            -0.003414135
+## Central.American.Court.of.Justice                                                                 -0.004096961
+## COMESA.Court.of.Justice                                                                           -0.012973711
+## Court.of.Conciliation.and.Arbitration                                                              0.099692728
+## General.Court.of.the.European.Union                                                                0.115227040
+## Court.of.Justice.of.the.Andean.Community                                                          -0.003414135
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                 -0.010242404
+## Court.of.Justice.of.the.European.Communities                                                       0.119494708
+## East.African.Court.of.Justice                                                                     -0.002048481
+## European.Court.of.Human.Rights                                                                     0.107203824
+## European.Free.Trade.Agreement.Court                                                               -0.002048481
+## Inter.American.Court.of.Human.Rights                                                              -0.015705019
+## International.Centre.for.Settlement.of.Investment.Disputes                                         0.025776716
+## International.Court.of.Justice                                                                     0.003926255
+## International.Criminal.Court                                                                       0.032775691
+## International.Tribunal.for.the.Law.of.the.Sea                                                      0.024581769
+## NAFTA.Dispute.Settlement.Panels                                                                   -0.002048481
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                     -0.011608057
+## Permanent.Court.of.Arbitration                                                                     0.056674633
+## WAEMU.Court.of.Justice                                                                            -0.005462615
+## WIPO.Arbitration.and.Mediation.Center                                                              0.008193923
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                       0.026630249
+## Total                                                                                              0.531239331
+##                                                                   East.African.Court.of.Justice
+## X                                                                                            NA
+## African.Court.on.Human.and.Peoples..Rights                                         0.0126566844
+## Benelux.Court.of.Justice                                                          -0.0002194801
+## Caribbean.Court.of.Justice                                                        -0.0008779203
+## CEMAC.Court.of.Justice                                                            -0.0003658001
+## Central.American.Court.of.Justice                                                 -0.0004389602
+## COMESA.Court.of.Justice                                                            0.0085109496
+## Court.of.Conciliation.and.Arbitration                                             -0.0041701214
+## General.Court.of.the.European.Union                                               -0.0019753207
+## Court.of.Justice.of.the.Andean.Community                                          -0.0003658001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                 -0.0010974004
+## Court.of.Justice.of.the.European.Communities                                      -0.0020484807
+## East.African.Court.of.Justice                                                      0.0146320051
+## European.Court.of.Human.Rights                                                    -0.0033653612
+## European.Free.Trade.Agreement.Court                                               -0.0002194801
+## Inter.American.Court.of.Human.Rights                                              -0.0016826806
+## International.Centre.for.Settlement.of.Investment.Disputes                         0.0032922011
+## International.Court.of.Justice                                                     0.0009510803
+## International.Criminal.Court                                                       0.0035116812
+## International.Tribunal.for.the.Law.of.the.Sea                                      0.0026337609
+## NAFTA.Dispute.Settlement.Panels                                                   -0.0002194801
+## OHADA.Common.Court.of.Justice.and.Arbitration                                     -0.0012437204
+## Permanent.Court.of.Arbitration                                                     0.0011217871
+## WAEMU.Court.of.Justice                                                            -0.0005852802
+## WIPO.Arbitration.and.Mediation.Center                                              0.0008779203
+## WTO.Dispute.Settlement.Body...Appellate.Body                                       0.0028532410
+## Total                                                                              0.0321660245
+##                                                                   European.Court.of.Human.Rights
+## X                                                                                             NA
+## African.Court.on.Human.and.Peoples..Rights                                          -0.033653612
+## Benelux.Court.of.Justice                                                             0.011486124
+## Caribbean.Court.of.Justice                                                          -0.013461445
+## CEMAC.Court.of.Justice                                                              -0.005608935
+## Central.American.Court.of.Justice                                                   -0.006730722
+## COMESA.Court.of.Justice                                                             -0.021313954
+## Court.of.Conciliation.and.Arbitration                                                0.163780910
+## General.Court.of.the.European.Union                                                  0.103375116
+## Court.of.Justice.of.the.Andean.Community                                            -0.005608935
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                   -0.016826806
+## Court.of.Justice.of.the.European.Communities                                         0.107203824
+## East.African.Court.of.Justice                                                       -0.003365361
+## European.Court.of.Human.Rights                                                       0.176120568
+## European.Free.Trade.Agreement.Court                                                  0.011486124
+## Inter.American.Court.of.Human.Rights                                                -0.025801102
+## International.Centre.for.Settlement.of.Investment.Disputes                           0.030678437
+## International.Court.of.Justice                                                       0.009632737
+## International.Criminal.Court                                                         0.038994294
+## International.Tribunal.for.the.Law.of.the.Sea                                        0.025532849
+## NAFTA.Dispute.Settlement.Panels                                                     -0.003365361
+## OHADA.Common.Court.of.Justice.and.Arbitration                                       -0.019070380
+## Permanent.Court.of.Arbitration                                                       0.058454860
+## WAEMU.Court.of.Justice                                                              -0.008974296
+## WIPO.Arbitration.and.Mediation.Center                                                0.013461445
+## WTO.Dispute.Settlement.Body...Appellate.Body                                         0.014046725
+## Total                                                                                0.600473101
+##                                                                   European.Free.Trade.Agreement.Court
+## X                                                                                                  NA
+## African.Court.on.Human.and.Peoples..Rights                                              -0.0021948008
+## Benelux.Court.of.Justice                                                                -0.0002194801
+## Caribbean.Court.of.Justice                                                              -0.0008779203
+## CEMAC.Court.of.Justice                                                                  -0.0003658001
+## Central.American.Court.of.Justice                                                       -0.0004389602
+## COMESA.Court.of.Justice                                                                 -0.0013900405
+## Court.of.Conciliation.and.Arbitration                                                    0.0106813637
+## General.Court.of.the.European.Union                                                     -0.0019753207
+## Court.of.Justice.of.the.Andean.Community                                                -0.0003658001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                       -0.0010974004
+## Court.of.Justice.of.the.European.Communities                                            -0.0020484807
+## East.African.Court.of.Justice                                                           -0.0002194801
+## European.Court.of.Human.Rights                                                           0.0114861240
+## European.Free.Trade.Agreement.Court                                                      0.0146320051
+## Inter.American.Court.of.Human.Rights                                                    -0.0016826806
+## International.Centre.for.Settlement.of.Investment.Disputes                              -0.0016582939
+## International.Court.of.Justice                                                           0.0009510803
+## International.Criminal.Court                                                             0.0035116812
+## International.Tribunal.for.the.Law.of.the.Sea                                            0.0026337609
+## NAFTA.Dispute.Settlement.Panels                                                         -0.0002194801
+## OHADA.Common.Court.of.Justice.and.Arbitration                                           -0.0012437204
+## Permanent.Court.of.Arbitration                                                           0.0060722821
+## WAEMU.Court.of.Justice                                                                  -0.0005852802
+## WIPO.Arbitration.and.Mediation.Center                                                    0.0008779203
+## WTO.Dispute.Settlement.Body...Appellate.Body                                             0.0028532410
+## Total                                                                                    0.0371165195
+##                                                                   Inter.American.Court.of.Human.Rights
+## X                                                                                                   NA
+## African.Court.on.Human.and.Peoples..Rights                                               -0.0168268058
+## Benelux.Court.of.Justice                                                                 -0.0016826806
+## Caribbean.Court.of.Justice                                                                0.0180217529
+## CEMAC.Court.of.Justice                                                                   -0.0028044676
+## Central.American.Court.of.Justice                                                         0.0263376091
+## COMESA.Court.of.Justice                                                                  -0.0106569770
+## Court.of.Conciliation.and.Arbitration                                                    -0.0319709311
+## General.Court.of.the.European.Union                                                      -0.0151441252
+## Court.of.Justice.of.the.Andean.Community                                                  0.0169975126
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                        -0.0084134029
+## Court.of.Justice.of.the.European.Communities                                             -0.0157050188
+## East.African.Court.of.Justice                                                            -0.0016826806
+## European.Court.of.Human.Rights                                                           -0.0258011023
+## European.Free.Trade.Agreement.Court                                                      -0.0016826806
+## Inter.American.Court.of.Human.Rights                                                      0.1009608350
+## International.Centre.for.Settlement.of.Investment.Disputes                                0.0004877335
+## International.Court.of.Justice                                                            0.0072916159
+## International.Criminal.Court                                                              0.0219723943
+## International.Tribunal.for.the.Law.of.the.Sea                                             0.0003901868
+## NAFTA.Dispute.Settlement.Panels                                                           0.0032678145
+## OHADA.Common.Court.of.Justice.and.Arbitration                                            -0.0095351900
+## Permanent.Court.of.Arbitration                                                            0.0267521826
+## WAEMU.Court.of.Justice                                                                   -0.0044871482
+## WIPO.Arbitration.and.Mediation.Center                                                     0.0067307223
+## WTO.Dispute.Settlement.Body...Appellate.Body                                              0.0218748476
+## Total                                                                                     0.1046919963
+##                                                                   International.Centre.for.Settlement.of.Investment.Disputes
+## X                                                                                                                         NA
+## African.Court.on.Human.and.Peoples..Rights                                                                      0.0180705263
+## Benelux.Court.of.Justice                                                                                        0.0032922011
+## Caribbean.Court.of.Justice                                                                                     -0.0016826806
+## CEMAC.Court.of.Justice                                                                                          0.0005365069
+## Central.American.Court.of.Justice                                                                               0.0065844023
+## COMESA.Court.of.Justice                                                                                         0.0059991221
+## Court.of.Conciliation.and.Arbitration                                                                           0.0328488514
+## General.Court.of.the.European.Union                                                                             0.0246793152
+## Court.of.Justice.of.the.Andean.Community                                                                       -0.0093644832
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                               0.0164610057
+## Court.of.Justice.of.the.European.Communities                                                                    0.0257767156
+## East.African.Court.of.Justice                                                                                   0.0032922011
+## European.Court.of.Human.Rights                                                                                  0.0306784373
+## European.Free.Trade.Agreement.Court                                                                            -0.0016582939
+## Inter.American.Court.of.Human.Rights                                                                            0.0004877335
+## International.Centre.for.Settlement.of.Investment.Disputes                                                      0.1733892601
+## International.Court.of.Justice                                                                                  0.0352387455
+## International.Criminal.Court                                                                                    0.0512851778
+## International.Tribunal.for.the.Law.of.the.Sea                                                                   0.0149490318
+## NAFTA.Dispute.Settlement.Panels                                                                                 0.0032922011
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                                   0.0137053114
+## Permanent.Court.of.Arbitration                                                                                  0.0376286397
+## WAEMU.Court.of.Justice                                                                                          0.0087792030
+## WIPO.Arbitration.and.Mediation.Center                                                                           0.0214846608
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                                    0.0512607911
+## Total                                                                                                           0.5670145832
+##                                                                   International.Court.of.Justice
+## X                                                                                             NA
+## African.Court.on.Human.and.Peoples..Rights                                          0.0045603082
+## Benelux.Court.of.Justice                                                            0.0009510803
+## Caribbean.Court.of.Justice                                                          0.0038043213
+## CEMAC.Court.of.Justice                                                              0.0015851339
+## Central.American.Court.of.Justice                                                   0.0019021607
+## COMESA.Court.of.Justice                                                             0.0010730137
+## Court.of.Conciliation.and.Arbitration                                               0.0081695362
+## General.Court.of.the.European.Union                                                 0.0036092279
+## Court.of.Justice.of.the.Andean.Community                                            0.0015851339
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                   0.0047554016
+## Court.of.Justice.of.the.European.Communities                                        0.0039262547
+## East.African.Court.of.Justice                                                       0.0009510803
+## European.Court.of.Human.Rights                                                      0.0096327367
+## European.Free.Trade.Agreement.Court                                                 0.0009510803
+## Inter.American.Court.of.Human.Rights                                                0.0072916159
+## International.Centre.for.Settlement.of.Investment.Disputes                          0.0352387455
+## International.Court.of.Justice                                                      0.0602350875
+## International.Criminal.Court                                                        0.0342876652
+## International.Tribunal.for.the.Law.of.the.Sea                                       0.0182900063
+## NAFTA.Dispute.Settlement.Panels                                                     0.0009510803
+## OHADA.Common.Court.of.Justice.and.Arbitration                                       0.0053894552
+## Permanent.Court.of.Arbitration                                                      0.0132907379
+## WAEMU.Court.of.Justice                                                              0.0025362142
+## WIPO.Arbitration.and.Mediation.Center                                               0.0308491440
+## WTO.Dispute.Settlement.Body...Appellate.Body                                        0.0173389260
+## Total                                                                               0.2731551480
+##                                                                   International.Criminal.Court
+## X                                                                                           NA
+## African.Court.on.Human.and.Peoples..Rights                                         0.010364337
+## Benelux.Court.of.Justice                                                           0.003511681
+## Caribbean.Court.of.Justice                                                         0.014046725
+## CEMAC.Court.of.Justice                                                             0.000902307
+## Central.American.Court.of.Justice                                                  0.002072867
+## COMESA.Court.of.Justice                                                            0.007389163
+## Court.of.Conciliation.and.Arbitration                                              0.032068478
+## General.Court.of.the.European.Union                                                0.031605131
+## Court.of.Justice.of.the.Andean.Community                                           0.005852802
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                  0.012607911
+## Court.of.Justice.of.the.European.Communities                                       0.032775691
+## East.African.Court.of.Justice                                                      0.003511681
+## European.Court.of.Human.Rights                                                     0.038994294
+## European.Free.Trade.Agreement.Court                                                0.003511681
+## Inter.American.Court.of.Human.Rights                                               0.021972394
+## International.Centre.for.Settlement.of.Investment.Disputes                         0.051285178
+## International.Court.of.Justice                                                     0.034287665
+## International.Criminal.Court                                                       0.181436863
+## International.Tribunal.for.the.Law.of.the.Sea                                      0.032117251
+## NAFTA.Dispute.Settlement.Panels                                                    0.003511681
+## OHADA.Common.Court.of.Justice.and.Arbitration                                      0.009998537
+## Permanent.Court.of.Arbitration                                                     0.041457348
+## WAEMU.Court.of.Justice                                                             0.004413988
+## WIPO.Arbitration.and.Mediation.Center                                              0.030507731
+## WTO.Dispute.Settlement.Body...Appellate.Body                                       0.058308540
+## Total                                                                              0.668511925
+##                                                                   International.Tribunal.for.the.Law.of.the.Sea
+## X                                                                                                            NA
+## African.Court.on.Human.and.Peoples..Rights                                                         0.0015851339
+## Benelux.Court.of.Justice                                                                           0.0026337609
+## Caribbean.Court.of.Justice                                                                        -0.0092669365
+## CEMAC.Court.of.Justice                                                                             0.0043896015
+## Central.American.Court.of.Justice                                                                  0.0003170268
+## COMESA.Court.of.Justice                                                                           -0.0031214944
+## Court.of.Conciliation.and.Arbitration                                                              0.0054870019
+## General.Court.of.the.European.Union                                                                0.0237038482
+## Court.of.Justice.of.the.Andean.Community                                                          -0.0104618836
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                 -0.0016826806
+## Court.of.Justice.of.the.European.Communities                                                       0.0245817685
+## East.African.Court.of.Justice                                                                      0.0026337609
+## European.Court.of.Human.Rights                                                                     0.0255328489
+## European.Free.Trade.Agreement.Court                                                                0.0026337609
+## Inter.American.Court.of.Human.Rights                                                               0.0003901868
+## International.Centre.for.Settlement.of.Investment.Disputes                                         0.0149490318
+## International.Court.of.Justice                                                                     0.0182900063
+## International.Criminal.Court                                                                       0.0321172511
+## International.Tribunal.for.the.Law.of.the.Sea                                                      0.1466126908
+## NAFTA.Dispute.Settlement.Panels                                                                    0.0026337609
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                     -0.0098278301
+## Permanent.Court.of.Arbitration                                                                     0.0459444959
+## WAEMU.Court.of.Justice                                                                            -0.0028776277
+## WIPO.Arbitration.and.Mediation.Center                                                              0.0191679266
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                       0.0301175438
+## Total                                                                                              0.3664829537
+##                                                                   NAFTA.Dispute.Settlement.Panels
+## X                                                                                              NA
+## African.Court.on.Human.and.Peoples..Rights                                          -0.0021948008
+## Benelux.Court.of.Justice                                                            -0.0002194801
+## Caribbean.Court.of.Justice                                                          -0.0008779203
+## CEMAC.Court.of.Justice                                                              -0.0003658001
+## Central.American.Court.of.Justice                                                   -0.0004389602
+## COMESA.Court.of.Justice                                                             -0.0013900405
+## Court.of.Conciliation.and.Arbitration                                                0.0057308687
+## General.Court.of.the.European.Union                                                 -0.0019753207
+## Court.of.Justice.of.the.Andean.Community                                            -0.0003658001
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                   -0.0010974004
+## Court.of.Justice.of.the.European.Communities                                        -0.0020484807
+## East.African.Court.of.Justice                                                       -0.0002194801
+## European.Court.of.Human.Rights                                                      -0.0033653612
+## European.Free.Trade.Agreement.Court                                                 -0.0002194801
+## Inter.American.Court.of.Human.Rights                                                 0.0032678145
+## International.Centre.for.Settlement.of.Investment.Disputes                           0.0032922011
+## International.Court.of.Justice                                                       0.0009510803
+## International.Criminal.Court                                                         0.0035116812
+## International.Tribunal.for.the.Law.of.the.Sea                                        0.0026337609
+## NAFTA.Dispute.Settlement.Panels                                                      0.0146320051
+## OHADA.Common.Court.of.Justice.and.Arbitration                                       -0.0012437204
+## Permanent.Court.of.Arbitration                                                       0.0060722821
+## WAEMU.Court.of.Justice                                                              -0.0005852802
+## WIPO.Arbitration.and.Mediation.Center                                                0.0008779203
+## WTO.Dispute.Settlement.Body...Appellate.Body                                         0.0028532410
+## Total                                                                                0.0272155294
+##                                                                   OHADA.Common.Court.of.Justice.and.Arbitration
+## X                                                                                                            NA
+## African.Court.on.Human.and.Peoples..Rights                                                          0.046968736
+## Benelux.Court.of.Justice                                                                           -0.001243720
+## Caribbean.Court.of.Justice                                                                         -0.004974882
+## CEMAC.Court.of.Justice                                                                              0.022679608
+## Central.American.Court.of.Justice                                                                  -0.002487441
+## COMESA.Court.of.Justice                                                                             0.002024094
+## Court.of.Conciliation.and.Arbitration                                                              -0.023630688
+## General.Court.of.the.European.Union                                                                -0.011193484
+## Court.of.Justice.of.the.Andean.Community                                                           -0.002072867
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                   0.038335853
+## Court.of.Justice.of.the.European.Communities                                                       -0.011608057
+## East.African.Court.of.Justice                                                                      -0.001243720
+## European.Court.of.Human.Rights                                                                     -0.019070380
+## European.Free.Trade.Agreement.Court                                                                -0.001243720
+## Inter.American.Court.of.Human.Rights                                                               -0.009535190
+## International.Centre.for.Settlement.of.Investment.Disputes                                          0.013705311
+## International.Court.of.Justice                                                                      0.005389455
+## International.Criminal.Court                                                                        0.009998537
+## International.Tribunal.for.the.Law.of.the.Sea                                                      -0.009827830
+## NAFTA.Dispute.Settlement.Panels                                                                    -0.001243720
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                       0.077110667
+## Permanent.Court.of.Arbitration                                                                     -0.020045847
+## WAEMU.Court.of.Justice                                                                              0.036287373
+## WIPO.Arbitration.and.Mediation.Center                                                               0.004974882
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                        0.006267376
+## Total                                                                                               0.144320343
+##                                                                   Permanent.Court.of.Arbitration
+## X                                                                                             NA
+## African.Court.on.Human.and.Peoples..Rights                                          -0.033336585
+## Benelux.Court.of.Justice                                                             0.006072282
+## Caribbean.Court.of.Justice                                                          -0.020265327
+## CEMAC.Court.of.Justice                                                              -0.009681510
+## Central.American.Court.of.Justice                                                    0.012144564
+## COMESA.Court.of.Justice                                                              0.013705311
+## Court.of.Conciliation.and.Arbitration                                                0.051016924
+## General.Court.of.the.European.Union                                                  0.054650539
+## Court.of.Justice.of.the.Andean.Community                                             0.010120470
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                   -0.019143540
+## Court.of.Justice.of.the.European.Communities                                         0.056674633
+## East.African.Court.of.Justice                                                        0.001121787
+## European.Court.of.Human.Rights                                                       0.058454860
+## European.Free.Trade.Agreement.Court                                                  0.006072282
+## Inter.American.Court.of.Human.Rights                                                 0.026752183
+## International.Centre.for.Settlement.of.Investment.Disputes                           0.037628640
+## International.Court.of.Justice                                                       0.013290738
+## International.Criminal.Court                                                         0.041457348
+## International.Tribunal.for.the.Law.of.the.Sea                                        0.045944496
+## NAFTA.Dispute.Settlement.Panels                                                      0.006072282
+## OHADA.Common.Court.of.Justice.and.Arbitration                                       -0.020045847
+## Permanent.Court.of.Arbitration                                                       0.242891284
+## WAEMU.Court.of.Justice                                                              -0.003609228
+## WIPO.Arbitration.and.Mediation.Center                                                0.025215822
+## WTO.Dispute.Settlement.Body...Appellate.Body                                         0.054723699
+## Total                                                                                0.657928108
+##                                                                   WAEMU.Court.of.Justice
+## X                                                                                     NA
+## African.Court.on.Human.and.Peoples..Rights                                  0.0288006633
+## Benelux.Court.of.Justice                                                   -0.0005852802
+## Caribbean.Court.of.Justice                                                 -0.0023411208
+## CEMAC.Court.of.Justice                                                     -0.0009754670
+## Central.American.Court.of.Justice                                          -0.0011705604
+## COMESA.Court.of.Justice                                                    -0.0037067746
+## Court.of.Conciliation.and.Arbitration                                      -0.0111203239
+## General.Court.of.the.European.Union                                        -0.0052675218
+## Court.of.Justice.of.the.Andean.Community                                   -0.0009754670
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States           0.0366775594
+## Court.of.Justice.of.the.European.Communities                               -0.0054626152
+## East.African.Court.of.Justice                                              -0.0005852802
+## European.Court.of.Human.Rights                                             -0.0089742964
+## European.Free.Trade.Agreement.Court                                        -0.0005852802
+## Inter.American.Court.of.Human.Rights                                       -0.0044871482
+## International.Centre.for.Settlement.of.Investment.Disputes                  0.0087792030
+## International.Court.of.Justice                                              0.0025362142
+## International.Criminal.Court                                                0.0044139882
+## International.Tribunal.for.the.Law.of.the.Sea                              -0.0028776277
+## NAFTA.Dispute.Settlement.Panels                                            -0.0005852802
+## OHADA.Common.Court.of.Justice.and.Arbitration                               0.0362873726
+## Permanent.Court.of.Arbitration                                             -0.0036092279
+## WAEMU.Court.of.Justice                                                      0.0380432132
+## WIPO.Arbitration.and.Mediation.Center                                       0.0023411208
+## WTO.Dispute.Settlement.Body...Appellate.Body                                0.0076086426
+## Total                                                                       0.1121787056
+##                                                                   WIPO.Arbitration.and.Mediation.Center
+## X                                                                                                    NA
+## African.Court.on.Human.and.Peoples..Rights                                                 0.0038287080
+## Benelux.Court.of.Justice                                                                   0.0008779203
+## Caribbean.Court.of.Justice                                                                 0.0035116812
+## CEMAC.Court.of.Justice                                                                     0.0014632005
+## Central.American.Court.of.Justice                                                          0.0017558406
+## COMESA.Court.of.Justice                                                                    0.0055601619
+## Court.of.Conciliation.and.Arbitration                                                      0.0166804858
+## General.Court.of.the.European.Union                                                        0.0079012827
+## Court.of.Justice.of.the.Andean.Community                                                   0.0014632005
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                          0.0043896015
+## Court.of.Justice.of.the.European.Communities                                               0.0081939228
+## East.African.Court.of.Justice                                                              0.0008779203
+## European.Court.of.Human.Rights                                                             0.0134614447
+## European.Free.Trade.Agreement.Court                                                        0.0008779203
+## Inter.American.Court.of.Human.Rights                                                       0.0067307223
+## International.Centre.for.Settlement.of.Investment.Disputes                                 0.0214846608
+## International.Court.of.Justice                                                             0.0308491440
+## International.Criminal.Court                                                               0.0305077306
+## International.Tribunal.for.the.Law.of.the.Sea                                              0.0191679266
+## NAFTA.Dispute.Settlement.Panels                                                            0.0008779203
+## OHADA.Common.Court.of.Justice.and.Arbitration                                              0.0049748817
+## Permanent.Court.of.Arbitration                                                             0.0252158221
+## WAEMU.Court.of.Justice                                                                     0.0023411208
+## WIPO.Arbitration.and.Mediation.Center                                                      0.0558942594
+## WTO.Dispute.Settlement.Body...Appellate.Body                                               0.0232405014
+## Total                                                                                      0.2921279813
+##                                                                   WTO.Dispute.Settlement.Body...Appellate.Body
+## X                                                                                                           NA
+## African.Court.on.Human.and.Peoples..Rights                                                        0.0087304297
+## Benelux.Court.of.Justice                                                                          0.0028532410
+## Caribbean.Court.of.Justice                                                                        0.0114129640
+## CEMAC.Court.of.Justice                                                                           -0.0001950934
+## Central.American.Court.of.Justice                                                                 0.0057064820
+## COMESA.Court.of.Justice                                                                          -0.0066819490
+## Court.of.Conciliation.and.Arbitration                                                             0.0047066283
+## General.Court.of.the.European.Union                                                               0.0256791689
+## Court.of.Justice.of.the.Andean.Community                                                          0.0047554016
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States                                 0.0142662049
+## Court.of.Justice.of.the.European.Communities                                                      0.0266302492
+## East.African.Court.of.Justice                                                                     0.0028532410
+## European.Court.of.Human.Rights                                                                    0.0140467249
+## European.Free.Trade.Agreement.Court                                                               0.0028532410
+## Inter.American.Court.of.Human.Rights                                                              0.0218748476
+## International.Centre.for.Settlement.of.Investment.Disputes                                        0.0512607911
+## International.Court.of.Justice                                                                    0.0173389260
+## International.Criminal.Court                                                                      0.0583085402
+## International.Tribunal.for.the.Law.of.the.Sea                                                     0.0301175438
+## NAFTA.Dispute.Settlement.Panels                                                                   0.0028532410
+## OHADA.Common.Court.of.Justice.and.Arbitration                                                     0.0062673755
+## Permanent.Court.of.Arbitration                                                                    0.0547236990
+## WAEMU.Court.of.Justice                                                                            0.0076086426
+## WIPO.Arbitration.and.Mediation.Center                                                             0.0232405014
+## WTO.Dispute.Settlement.Body...Appellate.Body                                                      0.1559771741
+## Total                                                                                             0.5471882164
+##                                                                          Total
+## X                                                                           NA
+## African.Court.on.Human.and.Peoples..Rights                         0.153343413
+## Benelux.Court.of.Justice                                           0.071769985
+## Caribbean.Court.of.Justice                                        -0.004999268
+## CEMAC.Court.of.Justice                                             0.030507731
+## Central.American.Court.of.Justice                                  0.044530069
+## COMESA.Court.of.Justice                                            0.033751158
+## Court.of.Conciliation.and.Arbitration                              0.541847535
+## General.Court.of.the.European.Union                                0.517216993
+## Court.of.Justice.of.the.Andean.Community                           0.010705750
+## Court.of.Justice.of.the.Economic.Community.of.West.African.States  0.126176657
+## Court.of.Justice.of.the.European.Communities                       0.531239331
+## East.African.Court.of.Justice                                      0.032166024
+## European.Court.of.Human.Rights                                     0.600473101
+## European.Free.Trade.Agreement.Court                                0.037116520
+## Inter.American.Court.of.Human.Rights                               0.104691996
+## International.Centre.for.Settlement.of.Investment.Disputes         0.567014583
+## International.Court.of.Justice                                     0.273155148
+## International.Criminal.Court                                       0.668511925
+## International.Tribunal.for.the.Law.of.the.Sea                      0.366482954
+## NAFTA.Dispute.Settlement.Panels                                    0.027215529
+## OHADA.Common.Court.of.Justice.and.Arbitration                      0.144320343
+## Permanent.Court.of.Arbitration                                     0.657928108
+## WAEMU.Court.of.Justice                                             0.112178706
+## WIPO.Arbitration.and.Mediation.Center                              0.292127981
+## WTO.Dispute.Settlement.Body...Appellate.Body                       0.547188216
+## Total                                                              6.486660489</code></pre>
+<p>======= <!--
+David, 
+These data seem like good choices; perhaps you will be merging treaty and economic data? Your task now is to select a few variables of interests. Try writing a few lines of R code that loads these data from their URL and then uses select() to trim it down to the columns you want. Make sure to include any ID columns. 
+If the files are very large, you may want to make a short .R script that loads from the URL, selects the variables you want, and then saves your new, smaller data file in a folder called "data" (make sure to save this script in your 811 folder, commit it, and push it). This portfolio page can then load this smaller data file from that folder using here(data/YourNewDataFile).
+If you want to start working with treaty text data right off the bat, let me know and we can jump ahead to some text analysis basics--we will need to at least count some word frequencies so you have something to plot :) 
+Best,
+Devin
+--> &gt;&gt;&gt;&gt;&gt;&gt;&gt; 78a98972485d4a77e901b1a099f71c27a1acf90c</p>
 </div>
 
 
