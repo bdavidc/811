@@ -66,3 +66,13 @@ Relevant data for these questions include:
 6. Interview data with elites and citizens.
 
 Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.
+
+#Assignment 2:
+I have compiled a dataset of member states of international courts around the world. I summarize the data as follows -- this gives us the average number of courts that a state belongs to (7), as well as the variance of this measure (6), which is not surprisingly quite high.
+
+```{r}
+dataset <- read.csv("Dataset ready for summary.csv")
+
+summary(dataset)
+variance(dataset)
+```
