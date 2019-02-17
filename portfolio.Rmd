@@ -78,6 +78,8 @@ I have compiled a dataset of member states of international courts around the wo
 # variance(dataset) 
 ##  IMPORTANT NOTE: I could not knit this without the DAKS package, which is where google tells me this `variance()` function can be found. Base R is just var(), so you could either use that, as I have below, or add DAKS to your list of packages to install and load
 
+## Less important note: Please put data files in a data subfolder and use the here() function
+
 d <- read.csv("Dataset ready for summary.csv") # easier to work with "d"
 
 # you have 25 courts x 203 countries = 5075 0's and 1's in your data frame
@@ -86,8 +88,9 @@ d %<>%
   rename(country = X) %>% 
   select(-Total) # this is a function of the data, which may change (e.g. if you find another court), so we want to create this. It can't be fixed in the raw data. 
 
-## This raises a question of what 
-## Is an 
+## This raises a question of what counts as an observation.
+
+## Will values in these data only vary by country, or might things vary among each country's memberships (e.g. the dates, roles, contributions).
 
 
 ## Here are these data with one observation per country per court::
@@ -113,7 +116,7 @@ I collected data on membership in `r length(unique(d$court))`  courts for `r len
 ## The magic of group_by():
 d %<>% 
   group_by(country) %>% 
-  mutate(countryTotal = sum(member) ) %>% 
+  mutate(countryTotal = sum(member) ) %>%  # now sum() just operates within each country group
   ungroup() %>%
   group_by(court) %>% 
   mutate(courtTotal = sum(member) ) %>% 
@@ -145,7 +148,7 @@ d %>% ## pipe data into ggplot, same as ggplot(d)
 ```
 
 
-```{r summary-fig, fig.height=40, fig.width=8}
+```{r summary-fig, fig.height=30, fig.width=8}
 d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
   filter(member != 0) %>% 
   ggplot() + 
