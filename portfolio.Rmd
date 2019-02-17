@@ -67,17 +67,96 @@ Relevant data for these questions include:
 
 Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.
 
-<<<<<<< HEAD
 #Assignment 2:
 I have compiled a dataset of member states of international courts around the world. I summarize the data as follows -- this gives us the average number of courts that a state belongs to (7), as well as the variance of this measure (6), which is not surprisingly quite high.
 
-```{r}
-dataset <- read.csv("Dataset ready for summary.csv")
+```{r data}
+## Very cool that you are working with original data. Even if you find a source for these data, it is unlikely that they will be current to 2019, so you have at least added a time period here. My suggestions use dplyr and tidyr functions glimpse(), rename(), select(), group_by(), gather(), summarize(), and mutate(). 
 
-summary(dataset)
-variance(dataset)
+# dataset <- read.csv("Dataset ready for summary.csv")
+# summary(dataset)
+# variance(dataset) 
+##  IMPORTANT NOTE: I could not knit this without the DAKS package, which is where google tells me this `variance()` function can be found. Base R is just var(), so you could either use that, as I have below, or add DAKS to your list of packages to install and load
+
+d <- read.csv("Dataset ready for summary.csv") # easier to work with "d"
+
+# you have 25 courts x 203 countries = 5075 0's and 1's in your data frame
+
+d %<>% 
+  rename(country = X) %>% 
+  select(-Total) # this is a function of the data, which may change (e.g. if you find another court), so we want to create this. It can't be fixed in the raw data. 
+
+## This raises a question of what 
+## Is an 
+
+
+## Here are these data with one observation per country per court::
+d %<>% 
+  group_by(country) %>% 
+  gather(-country, ## gather all variables except country into variable-value pairs
+         key = "court", ## name for former variables names
+         value = "member" ## name for former variables values
+         )
+
+glimpse(d) # you have 25 courts x 203 countries = 5075 potential membership observations
+
+## You may want to filter out only cases that are instances of membership (if you are only recording information about members) or not (if you are recording information about non-members)
+
+## If this is a time series, you may need observations to be country-court-year
+
+
 ```
-=======
+
+I collected data on membership in `r length(unique(d$court))`  courts for `r length(unique(d$country))` countries.
+
+```{r summary-stats}
+## The magic of group_by():
+d %<>% 
+  group_by(country) %>% 
+  mutate(countryTotal = sum(member) ) %>% 
+  ungroup() %>%
+  group_by(court) %>% 
+  mutate(courtTotal = sum(member) ) %>% 
+  ungroup() 
+
+country.stats <- d %>% 
+  select(country, countryTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(countryTotal),
+            variance = var(countryTotal) )
+
+court.stats <- d %>% 
+  select(court, courtTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(courtTotal),
+            variance = var(courtTotal) )
+  
+```
+
+The average number of members on each court is `r round(court.stats$mean)` and the average number or courts to which each country is a member is `r round(country.stats$mean)`.
+
+```{r summary-plot}
+d %>% ## pipe data into ggplot, same as ggplot(d)
+  group_by(country) %>% 
+  summarise(countryTotal = sum(member) ) %>%
+  ungroup() %>% 
+  ggplot() +
+  geom_histogram(aes(x = countryTotal))
+```
+
+
+```{r summary-fig, fig.height=40, fig.width=8}
+d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
+  filter(member != 0) %>% 
+  ggplot() + 
+  aes(x = country, fill = court) + 
+  geom_bar() + 
+  coord_flip() + 
+  theme(legend.position = 'top',
+        legend.text = element_text(size = 6))
+```
+
+
 <!--
 David, 
 These data seem like good choices; perhaps you will be merging treaty and economic data? Your task now is to select a few variables of interests. Try writing a few lines of R code that loads these data from their URL and then uses select() to trim it down to the columns you want. Make sure to include any ID columns. 
@@ -86,4 +165,4 @@ If you want to start working with treaty text data right off the bat, let me kno
 Best,
 Devin
 -->
->>>>>>> 78a98972485d4a77e901b1a099f71c27a1acf90c
+
