@@ -75,7 +75,7 @@ I have compiled a dataset of member states of international courts around the wo
 dataset <- read.csv("Dataset ready for summary.csv")
 
 summary(dataset)
-variance(dataset)
+var(dataset)
 ```
 =======
 <!--
@@ -86,4 +86,17 @@ If you want to start working with treaty text data right off the bat, let me kno
 Best,
 Devin
 -->
->>>>>>> 78a98972485d4a77e901b1a099f71c27a1acf90c
+
+
+
+#GGPlot of Above Data:
+
+```{r}
+
+ggplot(dataset, aes(X, Total)) +
+    geom_bar(stat = "identity")
+#Okay, I need to graph the country against its number of IGO membership.
+
+#Create 
+```
+Question: Obviously, this graph is very messy -- what's the most aesthetic way to map out many categorical variables and their values using ggplot? Thanks!
