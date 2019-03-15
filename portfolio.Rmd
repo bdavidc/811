@@ -148,7 +148,7 @@ d %>% ## pipe data into ggplot, same as ggplot(d)
 ```
 
 
-```{r summary-fig, fig.height=30, fig.width=8}
+```{r courts-by-country, fig.height=30, fig.width=8}
 d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
   filter(member != 0) %>% 
   ggplot() + 
@@ -169,3 +169,29 @@ Best,
 Devin
 -->
 
+
+---
+
+## Mapping
+```{r map-world-data, fig.width=8, fig.height=3}
+world <- map_data("world")  
+head(world)
+world %<>% rename(country = region)
+world %>% filter(country == "Aruba") %>% 
+ggplot( aes(x = long, y = lat, label = order) ) + geom_label()  
+```
+---
+
+```{r map-fig, fig.height=8, fig.width=10}
+d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
+  full_join(world) %>%
+  filter(member != 0) %>% 
+ggplot( aes(x = long, y = lat) ) +  
+  # A map layer of country shapes using only the world data (geom_polygon connects the dots)
+  geom_polygon(data = world, aes(group = group), fill = NA, color = "grey" ) +
+  # A map layer of country shapes by court membership (because the default data here is the joined d + world data we piped in)
+  geom_polygon( aes(group = group, fill = court) ) +
+  facet_wrap("court") +
+  theme(legend.position = 'top',
+        legend.text = element_text(size = 6))
+```
