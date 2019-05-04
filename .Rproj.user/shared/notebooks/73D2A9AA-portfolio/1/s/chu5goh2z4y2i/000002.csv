@@ -1,0 +1,3 @@
+"0","scatter.polity <- ggplot(na.omit(igo.state), aes(x=polity, y=IGOcount, shape=PostConflictYear, color=PostConflictYear)) + geom_point() + geom_smooth(method=lm, se=TRUE) + ggtitle(""Conflict End w/in 10 Years"")"
+"2","Error in na.omit(igo.state) : object 'igo.state' not found
+"

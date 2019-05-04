@@ -67,17 +67,249 @@ Relevant data for these questions include:
 
 Some potential datasets include the World Treaty Index, the UN Treaty Collection, and World Bank Data for macroeconomic indicators.
 
-<<<<<<< HEAD
 #Assignment 2:
 I have compiled a dataset of member states of international courts around the world. I summarize the data as follows -- this gives us the average number of courts that a state belongs to (7), as well as the variance of this measure (6), which is not surprisingly quite high.
 
-```{r}
-dataset <- read.csv("Dataset ready for summary.csv")
+```{r data}
+## Very cool that you are working with original data. Even if you find a source for these data, it is unlikely that they will be current to 2019, so you have at least added a time period here. My suggestions use dplyr and tidyr functions glimpse(), rename(), select(), group_by(), gather(), summarize(), and mutate(). 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+<<<<<<< HEAD
 summary(dataset)
 var(dataset)
-```
 =======
+# dataset <- read.csv("Dataset ready for summary.csv")
+# summary(dataset)
+# variance(dataset) 
+##  IMPORTANT NOTE: I could not knit this without the DAKS package, which is where google tells me this `variance()` function can be found. Base R is just var(), so you could either use that, as I have below, or add DAKS to your list of packages to install and load
+
+## Less important note: Please put data files in a data subfolder and use the here() function
+
+d <- read.csv("Dataset ready for summary.csv") # easier to work with "d"
+
+# you have 25 courts x 203 countries = 5075 0's and 1's in your data frame
+
+d %<>% 
+  rename(country = X) %>% 
+  select(-Total) # this is a function of the data, which may change (e.g. if you find another court), so we want to create this. It can't be fixed in the raw data. 
+
+## This raises a question of what counts as an observation.
+
+## Will values in these data only vary by country, or might things vary among each country's memberships (e.g. the dates, roles, contributions).
+
+
+## Here are these data with one observation per country per court::
+d %<>% 
+  group_by(country) %>% 
+  gather(-country, ## gather all variables except country into variable-value pairs
+         key = "court", ## name for former variables names
+         value = "member" ## name for former variables values
+         )
+
+glimpse(d) # you have 25 courts x 203 countries = 5075 potential membership observations
+
+## You may want to filter out only cases that are instances of membership (if you are only recording information about members) or not (if you are recording information about non-members)
+
+## If this is a time series, you may need observations to be country-court-year
+
+
+```
+
+I collected data on membership in `r length(unique(d$court))`  courts for `r length(unique(d$country))` countries.
+
+```{r summary-stats}
+## The magic of group_by():
+d %<>% 
+  group_by(country) %>% 
+  mutate(countryTotal = sum(member) ) %>%  # now sum() just operates within each country group
+  ungroup() %>%
+  group_by(court) %>% 
+  mutate(courtTotal = sum(member) ) %>% 
+  ungroup() 
+
+country.stats <- d %>% 
+  select(country, countryTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(countryTotal),
+            variance = var(countryTotal) )
+
+=======
+
+
+# dataset <- read.csv("Dataset ready for summary.csv")
+# summary(dataset)
+# variance(dataset) 
+##  IMPORTANT NOTE: I could not knit this without the DAKS package, which is where google tells me this `variance()` function can be found. Base R is just var(), so you could either use that, as I have below, or add DAKS to your list of packages to install and load
+
+## Less important note: Please put data files in a data subfolder and use the here() function
+
+d <- read.csv("Dataset ready for summary.csv") # easier to work with "d"
+
+# you have 25 courts x 203 countries = 5075 0's and 1's in your data frame
+
+d %<>% 
+  rename(country = X) %>% 
+  select(-Total) # this is a function of the data, which may change (e.g. if you find another court), so we want to create this. It can't be fixed in the raw data. 
+
+## This raises a question of what counts as an observation.
+
+## Will values in these data only vary by country, or might things vary among each country's memberships (e.g. the dates, roles, contributions).
+
+
+## Here are these data with one observation per country per court::
+d %<>% 
+  group_by(country) %>% 
+  gather(-country, ## gather all variables except country into variable-value pairs
+         key = "court", ## name for former variables names
+         value = "member" ## name for former variables values
+         )
+
+glimpse(d) # you have 25 courts x 203 countries = 5075 potential membership observations
+
+## You may want to filter out only cases that are instances of membership (if you are only recording information about members) or not (if you are recording information about non-members)
+
+## If this is a time series, you may need observations to be country-court-year
+
+
+```
+
+I collected data on membership in `r length(unique(d$court))`  courts for `r length(unique(d$country))` countries.
+
+```{r summary-stats}
+## The magic of group_by():
+d %<>% 
+  group_by(country) %>% 
+  mutate(countryTotal = sum(member) ) %>%  # now sum() just operates within each country group
+  ungroup() %>%
+  group_by(court) %>% 
+  mutate(courtTotal = sum(member) ) %>% 
+  ungroup() 
+
+country.stats <- d %>% 
+  select(country, countryTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(countryTotal),
+            variance = var(countryTotal) )
+
+>>>>>>> Stashed changes
+court.stats <- d %>% 
+  select(court, courtTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(courtTotal),
+            variance = var(courtTotal) )
+  
+<<<<<<< Updated upstream
+>>>>>>> 6ca7fc4466b49ae13c12f1d486516cb6aaae0b68
+=======
+>>>>>>> Stashed changes
+```
+
+=======
+
+
+# dataset <- read.csv("Dataset ready for summary.csv")
+# summary(dataset)
+# variance(dataset) 
+##  IMPORTANT NOTE: I could not knit this without the DAKS package, which is where google tells me this `variance()` function can be found. Base R is just var(), so you could either use that, as I have below, or add DAKS to your list of packages to install and load
+
+## Less important note: Please put data files in a data subfolder and use the here() function
+
+d <- read.csv("Dataset ready for summary.csv") # easier to work with "d"
+
+# you have 25 courts x 203 countries = 5075 0's and 1's in your data frame
+
+d %<>% 
+  rename(country = X) %>% 
+  select(-Total) # this is a function of the data, which may change (e.g. if you find another court), so we want to create this. It can't be fixed in the raw data. 
+
+## This raises a question of what counts as an observation.
+
+## Will values in these data only vary by country, or might things vary among each country's memberships (e.g. the dates, roles, contributions).
+
+
+## Here are these data with one observation per country per court::
+d %<>% 
+  group_by(country) %>% 
+  gather(-country, ## gather all variables except country into variable-value pairs
+         key = "court", ## name for former variables names
+         value = "member" ## name for former variables values
+         )
+
+glimpse(d) # you have 25 courts x 203 countries = 5075 potential membership observations
+
+## You may want to filter out only cases that are instances of membership (if you are only recording information about members) or not (if you are recording information about non-members)
+
+## If this is a time series, you may need observations to be country-court-year
+
+
+```
+
+I collected data on membership in `r length(unique(d$court))`  courts for `r length(unique(d$country))` countries.
+
+```{r summary-stats}
+## The magic of group_by():
+d %<>% 
+  group_by(country) %>% 
+  mutate(countryTotal = sum(member) ) %>%  # now sum() just operates within each country group
+  ungroup() %>%
+  group_by(court) %>% 
+  mutate(courtTotal = sum(member) ) %>% 
+  ungroup() 
+
+country.stats <- d %>% 
+  select(country, countryTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(countryTotal),
+            variance = var(countryTotal) )
+
+court.stats <- d %>% 
+  select(court, courtTotal) %>% 
+  distinct() %>%
+  summarise(mean = mean(courtTotal),
+            variance = var(courtTotal) )
+  
+```
+
+>>>>>>> Stashed changes
+The average number of members on each court is `r round(court.stats$mean)` and the average number or courts to which each country is a member is `r round(country.stats$mean)`.
+
+```{r summary-plot}
+d %>% ## pipe data into ggplot, same as ggplot(d)
+  group_by(country) %>% 
+  summarise(countryTotal = sum(member) ) %>%
+  ungroup() %>% 
+  ggplot() +
+  geom_histogram(aes(x = countryTotal))
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+```
+
+
+```{r courts-by-country, fig.height=30, fig.width=8}
+=======
+=======
+>>>>>>> Stashed changes
+
+```
+
+
+```{r summary-fig, fig.height=30, fig.width=8}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
+  filter(member != 0) %>% 
+  ggplot() + 
+  aes(x = country, fill = court) + 
+  geom_bar() + 
+  coord_flip() + 
+  theme(legend.position = 'top',
+        legend.text = element_text(size = 6))
+```
+
+
 <!--
 David, 
 These data seem like good choices; perhaps you will be merging treaty and economic data? Your task now is to select a few variables of interests. Try writing a few lines of R code that loads these data from their URL and then uses select() to trim it down to the columns you want. Make sure to include any ID columns. 
@@ -88,15 +320,315 @@ Devin
 -->
 
 
+<<<<<<< HEAD
 
-#GGPlot of Above Data:
+
+<!-- #GGPlot of Above Data: -->
+
+<!-- ```{r} -->
+
+<!-- ggplot(dataset, aes(X, Total)) + -->
+<!--     geom_bar(stat = "identity") -->
+<!-- #Okay, I need to graph the country against its number of IGO membership. -->
+
+<!-- #Create  -->
+<!-- ``` -->
+<!-- Question: Obviously, this graph is very messy -- what's the most aesthetic way to map out many categorical variables and their values using ggplot? Thanks! -->
+
+<!-- >>>>>>> f6e655d8fa56d3f9a40596cc1b4a82005a20f9a7 -->
+
+
+
+#Final Analysis
+
+For my final analysis, I will be looking at the impact of conflict and regime type on the joining rate of a state to IGOs. My data comes from the Correlates of War project, PolityIV project, and the World Bank. I will show that earlier work showing that democratizing nations were more likely to join IGOs is supported, but that democratization has a heterogeneous effect on states based on whether or not the state has recently experienced conflict.
+
+First, we will install the libraries needed for the project:
 
 ```{r}
-
-ggplot(dataset, aes(X, Total)) +
-    geom_bar(stat = "identity")
-#Okay, I need to graph the country against its number of IGO membership.
-
-#Create 
+library("readstata13")
+library("expss")#http://www.correlatesofwar.org/data-sets/state-system-membership
+library("dplyr")
+library("ggplot2")
+library("countrycode")
 ```
+
+Next, we will read in the data files we will need for our analysis. As mentioned before, these files come from the Correlates of War and PolityIV projects, as well as from the world bank:
+
+```{r}
+interstate.war <- read.csv("Inter-StateWarData_v4.0.csv")
+intrastate.war <- read.csv("Intra-StateWarData_v4.1.csv")
+economic.data <- read.csv("API_NY.GDP.MKTP.CD_DS2_en_csv_v2_10224782.csv")
+country.code <- read.csv("COW country codes.csv")
+igo.state <- read.csv("IGO_stateunit_v2.3.csv")
+polity <- read.csv("p4v2017.csv")
+region.codes <- read.csv("Region Codes.csv")
+```
+
+I then trim down the data, limiting the analysis to observations after 1965, since this is the earliest point where I have data for yearly IGO membership.
+
+```{r}
+igo.state <- filter(igo.state, year >= 1965)
+polity <- filter(polity, year >=1965)
+```
+
+Next, I select only those columns from the PolityIV dataset and from the Region Code table that I will need, removing the more fine-grained measurements. This will help to speed up my analysis. I also standardize the country codes in the Region Code table to match those used in the Correlates of War data. This is done using an r package called "countrycode".
+
+```{r}
+polity <- select(polity, c("ccode", "country", "year", "polity", "polity2"))
+region.codes$ccode <- countrycode(region.codes$M49.Code, 'un', 'cown', nomatch = NULL)
+region.codes <- select(region.codes, c(Region.Code, Region.Name, ccode))
+```
+
+This next chunk creates new variables in the IGO table, Interstate War Table, and Intrastate War Table. These new variables give each country-year observation a unique ID, and also creates a list of which of these IDs constitute a "post-conflict" observation. For the sake of this project, I have defined "post-conflict" as a country-year observation that is within 10 years of the end year of a conflict, as defined by Correlates of War. Analysis done using both a 5-year and 20-year measurement did not show significant variation. The last three lines make the "post-conflict" designation explicit in the IGO table that will be used for analysis, as well as identifying observations that represent the first year following a conflict.
+
+```{r}
+igo.state <- mutate(igo.state, countryyearid = paste(igo.state$ccode, "/", igo.state$year))
+
+interstate.war <- mutate(interstate.war, countryyearid = paste(interstate.war$ccode, "/", pmax(interstate.war$EndYear1, interstate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearid", toString(i), sep="")
+  var_name
+  interstate.war <- mutate(interstate.war, !!var_name := paste(interstate.war$ccode, "/", pmax(interstate.war$EndYear1, interstate.war$EndYear2) + i))
+}
+
+intrastate.war <- mutate(intrastate.war, countryyearidA = paste(intrastate.war$CcodeA, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearidA", toString(i), sep="")
+  intrastate.war <- mutate(intrastate.war, !!var_name := paste(intrastate.war$CcodeA, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2) + i))
+}
+
+intrastate.war <- mutate(intrastate.war, countryyearidB = paste(intrastate.war$CcodeB, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearidB", toString(i), sep="")
+  intrastate.war <- mutate(intrastate.war, !!var_name := paste(intrastate.war$CcodeB, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2) + i))
+}
+
+igo.state <- mutate(igo.state, PostConflictYear = igo.state$countryyearid %in% c(interstate.war$countryyearid, interstate.war$countryyearid1, interstate.war$countryyearid2, interstate.war$countryyearid3, interstate.war$countryyearid4, interstate.war$countryyearid5, interstate.war$countryyearid6, interstate.war$countryyearid7, interstate.war$countryyearid8, interstate.war$countryyearid9, interstate.war$countryyearid10, intrastate.war$countryyearidA, intrastate.war$countryyearidA1, intrastate.war$countryyearidA2, intrastate.war$countryyearidA3, intrastate.war$countryyearidA4, intrastate.war$countryyearidA5, intrastate.war$countryyearidA6, intrastate.war$countryyearidA7, intrastate.war$countryyearidA8, intrastate.war$countryyearidA9, intrastate.war$countryyearidA10, intrastate.war$countryyearidB, intrastate.war$countryyearidB1, intrastate.war$countryyearidB2, intrastate.war$countryyearidB3, intrastate.war$countryyearidB4, intrastate.war$countryyearidB5, intrastate.war$countryyearidB6, intrastate.war$countryyearidB7, intrastate.war$countryyearidB8,intrastate.war$countryyearidB9, intrastate.war$countryyearidB10))
+
+igo.state <- mutate(igo.state, FirstConflictYear = igo.state$countryyearid %in% c(interstate.war$countryyearid, intrastate.war$countryyearidA, intrastate.war$countryyearidB))
+
+<<<<<<< Updated upstream
+=======
+
+<!-- #GGPlot of Above Data: -->
+
+<!-- ```{r} -->
+
+<!-- ggplot(dataset, aes(X, Total)) + -->
+<!--     geom_bar(stat = "identity") -->
+<!-- #Okay, I need to graph the country against its number of IGO membership. -->
+
+<!-- #Create  -->
+<!-- ``` -->
+<!-- Question: Obviously, this graph is very messy -- what's the most aesthetic way to map out many categorical variables and their values using ggplot? Thanks! -->
+
+<!-- >>>>>>> f6e655d8fa56d3f9a40596cc1b4a82005a20f9a7 -->
+
+
+
+#Final Analysis
+
+For my final analysis, I will be looking at the impact of conflict and regime type on the joining rate of a state to IGOs. My data comes from the Correlates of War project, PolityIV project, and the World Bank. I will show that earlier work showing that democratizing nations were more likely to join IGOs is supported, but that democratization has a heterogeneous effect on states based on whether or not the state has recently experienced conflict.
+
+First, we will install the libraries needed for the project:
+
+```{r}
+library("readstata13")
+library("expss")#http://www.correlatesofwar.org/data-sets/state-system-membership
+library("dplyr")
+library("ggplot2")
+library("countrycode")
+```
+
+Next, we will read in the data files we will need for our analysis. As mentioned before, these files come from the Correlates of War and PolityIV projects, as well as from the world bank:
+
+```{r}
+interstate.war <- read.csv("Inter-StateWarData_v4.0.csv")
+intrastate.war <- read.csv("Intra-StateWarData_v4.1.csv")
+economic.data <- read.csv("API_NY.GDP.MKTP.CD_DS2_en_csv_v2_10224782.csv")
+country.code <- read.csv("COW country codes.csv")
+igo.state <- read.csv("IGO_stateunit_v2.3.csv")
+polity <- read.csv("p4v2017.csv")
+region.codes <- read.csv("Region Codes.csv")
+```
+
+I then trim down the data, limiting the analysis to observations after 1965, since this is the earliest point where I have data for yearly IGO membership.
+
+```{r}
+igo.state <- filter(igo.state, year >= 1965)
+polity <- filter(polity, year >=1965)
+```
+
+Next, I select only those columns from the PolityIV dataset and from the Region Code table that I will need, removing the more fine-grained measurements. This will help to speed up my analysis. I also standardize the country codes in the Region Code table to match those used in the Correlates of War data. This is done using an r package called "countrycode".
+
+```{r}
+polity <- select(polity, c("ccode", "country", "year", "polity", "polity2"))
+region.codes$ccode <- countrycode(region.codes$M49.Code, 'un', 'cown', nomatch = NULL)
+region.codes <- select(region.codes, c(Region.Code, Region.Name, ccode))
+```
+
+This next chunk creates new variables in the IGO table, Interstate War Table, and Intrastate War Table. These new variables give each country-year observation a unique ID, and also creates a list of which of these IDs constitute a "post-conflict" observation. For the sake of this project, I have defined "post-conflict" as a country-year observation that is within 10 years of the end year of a conflict, as defined by Correlates of War. Analysis done using both a 5-year and 20-year measurement did not show significant variation. The last three lines make the "post-conflict" designation explicit in the IGO table that will be used for analysis, as well as identifying observations that represent the first year following a conflict.
+
+```{r}
+igo.state <- mutate(igo.state, countryyearid = paste(igo.state$ccode, "/", igo.state$year))
+
+interstate.war <- mutate(interstate.war, countryyearid = paste(interstate.war$ccode, "/", pmax(interstate.war$EndYear1, interstate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearid", toString(i), sep="")
+  var_name
+  interstate.war <- mutate(interstate.war, !!var_name := paste(interstate.war$ccode, "/", pmax(interstate.war$EndYear1, interstate.war$EndYear2) + i))
+}
+
+intrastate.war <- mutate(intrastate.war, countryyearidA = paste(intrastate.war$CcodeA, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearidA", toString(i), sep="")
+  intrastate.war <- mutate(intrastate.war, !!var_name := paste(intrastate.war$CcodeA, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2) + i))
+}
+
+intrastate.war <- mutate(intrastate.war, countryyearidB = paste(intrastate.war$CcodeB, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2)))
+for(i in 1:10){
+  var_name <- paste("countryyearidB", toString(i), sep="")
+  intrastate.war <- mutate(intrastate.war, !!var_name := paste(intrastate.war$CcodeB, "/", pmax(intrastate.war$EndYear1, intrastate.war$EndYear2) + i))
+}
+
+igo.state <- mutate(igo.state, PostConflictYear = igo.state$countryyearid %in% c(interstate.war$countryyearid, interstate.war$countryyearid1, interstate.war$countryyearid2, interstate.war$countryyearid3, interstate.war$countryyearid4, interstate.war$countryyearid5, interstate.war$countryyearid6, interstate.war$countryyearid7, interstate.war$countryyearid8, interstate.war$countryyearid9, interstate.war$countryyearid10, intrastate.war$countryyearidA, intrastate.war$countryyearidA1, intrastate.war$countryyearidA2, intrastate.war$countryyearidA3, intrastate.war$countryyearidA4, intrastate.war$countryyearidA5, intrastate.war$countryyearidA6, intrastate.war$countryyearidA7, intrastate.war$countryyearidA8, intrastate.war$countryyearidA9, intrastate.war$countryyearidA10, intrastate.war$countryyearidB, intrastate.war$countryyearidB1, intrastate.war$countryyearidB2, intrastate.war$countryyearidB3, intrastate.war$countryyearidB4, intrastate.war$countryyearidB5, intrastate.war$countryyearidB6, intrastate.war$countryyearidB7, intrastate.war$countryyearidB8,intrastate.war$countryyearidB9, intrastate.war$countryyearidB10))
+
+igo.state <- mutate(igo.state, FirstConflictYear = igo.state$countryyearid %in% c(interstate.war$countryyearid, intrastate.war$countryyearidA, intrastate.war$countryyearidB))
+
+>>>>>>> Stashed changes
+igo.state <- mutate(igo.state, ccodechar = countrycode(igo.state$country, "country.name", "cowc"))
+
+```
+
+These lines clean the World Bank data. In the original table, each year was its own column, so I had to tidy it up, extracting the years from the column names and making them values in a "year" variable. I also standardize the country code to match Correlates of War, once again using the countrycode package:
+<<<<<<< Updated upstream
+
+```{r}
+year <- c()
+country <- c()
+gdp <- c()
+
+for(j in 1:264){
+  for(i in 1960:2017){
+    year <- c(year, i)
+    country <- c(country, as.character(economic.data[j, 2]))
+    name <- paste("X", toString(i), sep = "")
+    gdp <- c(gdp, economic.data[j, name])
+  }
+}
+
+
+country.clean <- countrycode(country, 'iso3c', 'cowc', nomatch = NULL)
+economic.country <- data.frame("ccodechar" = country.clean, "year" = year, "gdp" = gdp)
+```
+
+Now, I merge all of the data into the IGO table, and once again filter by year to make sure that all the data are covering the same time frame. As a final check to make sure that I don't have any missing data issues, I omit all NAs from the IGO table.
+
+```{r}
+igo.state <- merge(igo.state, economic.country, by = c("ccodechar", "year"), all = TRUE)
+igo.state <- merge(igo.state, polity, by = c("ccode", "year"), all = TRUE)
+igo.state <- merge(igo.state, region.codes, by = "ccode", all = TRUE)
+igo.state <- filter(igo.state, year <= 2005)
+igo.state <- filter(igo.state, year >= 1965)
+igo.state <- na.omit(igo.state)
+```
+
+With all of the data now in place, I create an IGOCount variable which tracks the number of IGOs a state is a member of in a given year. Also, for readability, I divide GDP by 1 million. I also filter out the special cases present in the PolityIV dataset, taking only those values which fall between -10 and 10. The special cases will be dealt with later during a qualitative analysis of specific states and conflicts.
+
+```{r}
+igo.state$IGOcount <- apply(igo.state[5:531], 1, function(x) length(which(x==1)))
+igo.state$gdp <- igo.state$gdp/1000000
+
+igo.state <- filter(igo.state, polity <=10) #Omit the special cases in the PolityIV dataset
+igo.state <- filter(igo.state, polity >= -10)
+```
+
+And, finally, we graph our results, putting Polity Score on the x-axis, IGO Membership on the y-axis, and grouping the points by whether or not the observation is post-conflict. Two separate trend lines are drawn, with standard errors displayed as gray sections surrounding the fit line. The blue represents post-conflict observation, and the red represents non-post-conflict observations. As you can see, although the two lines follow parallel trends of democracy being positively correlated with IO involvement, the numbers in post-conflict years are significantly higher than those in non-post-conflict years, at all levels of democracy.
+
+```{r, out.width='80%'}
+scatter.polity <- ggplot(na.omit(igo.state), aes(x=polity, y=IGOcount, shape=PostConflictYear, color=PostConflictYear)) + geom_point() + geom_smooth(method=lm, se=TRUE) + ggtitle("Conflict End w/in 10 Years") + theme(legend.position = "none")
+scatter.polity
+```
+<<<<<<< Updated upstream
 Question: Obviously, this graph is very messy -- what's the most aesthetic way to map out many categorical variables and their values using ggplot? Thanks!
+=======
+---
+
+## Mapping
+```{r map-world-data, fig.width=8, fig.height=3}
+world <- map_data("world")  
+head(world)
+world %<>% rename(country = region)
+world %>% filter(country == "Aruba") %>% 
+ggplot( aes(x = long, y = lat, label = order) ) + geom_label()  
+```
+---
+
+```{r map-fig, fig.height=8, fig.width=10}
+d %>% ## pipe data into ggplot, same as ggplot(d) but alows you to do stuff to d if you wnat, like filter out 0's:
+  full_join(world) %>%
+  filter(member != 0) %>% 
+ggplot( aes(x = long, y = lat) ) +  
+  # A map layer of country shapes using only the world data (geom_polygon connects the dots)
+  geom_polygon(data = world, aes(group = group), fill = NA, color = "grey" ) +
+  # A map layer of country shapes by court membership (because the default data here is the joined d + world data we piped in)
+  geom_polygon( aes(group = group, fill = court) ) +
+  facet_wrap("court") +
+  theme(legend.position = 'top',
+        legend.text = element_text(size = 6))
+```
+>>>>>>> 6ca7fc4466b49ae13c12f1d486516cb6aaae0b68
+=======
+
+>>>>>>> Stashed changes
+=======
+
+```{r}
+year <- c()
+country <- c()
+gdp <- c()
+
+for(j in 1:264){
+  for(i in 1960:2017){
+    year <- c(year, i)
+    country <- c(country, as.character(economic.data[j, 2]))
+    name <- paste("X", toString(i), sep = "")
+    gdp <- c(gdp, economic.data[j, name])
+  }
+}
+
+
+country.clean <- countrycode(country, 'iso3c', 'cowc', nomatch = NULL)
+economic.country <- data.frame("ccodechar" = country.clean, "year" = year, "gdp" = gdp)
+```
+
+Now, I merge all of the data into the IGO table, and once again filter by year to make sure that all the data are covering the same time frame. As a final check to make sure that I don't have any missing data issues, I omit all NAs from the IGO table.
+
+```{r}
+igo.state <- merge(igo.state, economic.country, by = c("ccodechar", "year"), all = TRUE)
+igo.state <- merge(igo.state, polity, by = c("ccode", "year"), all = TRUE)
+igo.state <- merge(igo.state, region.codes, by = "ccode", all = TRUE)
+igo.state <- filter(igo.state, year <= 2005)
+igo.state <- filter(igo.state, year >= 1965)
+igo.state <- na.omit(igo.state)
+```
+
+With all of the data now in place, I create an IGOCount variable which tracks the number of IGOs a state is a member of in a given year. Also, for readability, I divide GDP by 1 million. I also filter out the special cases present in the PolityIV dataset, taking only those values which fall between -10 and 10. The special cases will be dealt with later during a qualitative analysis of specific states and conflicts.
+
+```{r}
+igo.state$IGOcount <- apply(igo.state[5:531], 1, function(x) length(which(x==1)))
+igo.state$gdp <- igo.state$gdp/1000000
+
+igo.state <- filter(igo.state, polity <=10) #Omit the special cases in the PolityIV dataset
+igo.state <- filter(igo.state, polity >= -10)
+```
+
+And, finally, we graph our results, putting Polity Score on the x-axis, IGO Membership on the y-axis, and grouping the points by whether or not the observation is post-conflict. Two separate trend lines are drawn, with standard errors displayed as gray sections surrounding the fit line. The blue represents post-conflict observation, and the red represents non-post-conflict observations. As you can see, although the two lines follow parallel trends of democracy being positively correlated with IO involvement, the numbers in post-conflict years are significantly higher than those in non-post-conflict years, at all levels of democracy.
+
+```{r, out.width='80%'}
+scatter.polity <- ggplot(na.omit(igo.state), aes(x=polity, y=IGOcount, shape=PostConflictYear, color=PostConflictYear)) + geom_point() + geom_smooth(method=lm, se=TRUE) + ggtitle("Conflict End w/in 10 Years") + theme(legend.position = "none")
+scatter.polity
+```
+
+>>>>>>> Stashed changes

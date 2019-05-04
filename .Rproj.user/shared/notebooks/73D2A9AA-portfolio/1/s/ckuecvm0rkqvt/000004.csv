@@ -1,0 +1,5 @@
+"0","igo.state$gdp <- apply(igo.state$gdp, 1, function(x) x/1000000)
+"
+"2","Error in apply(igo.state$gdp, 1, function(x) x/1e+06) : 
+  dim(X) must have a positive length
+"

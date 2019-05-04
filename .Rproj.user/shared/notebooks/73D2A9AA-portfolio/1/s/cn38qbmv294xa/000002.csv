@@ -1,0 +1,3 @@
+"0","polity <- select(polity, c(""ccode"", ""country"", ""year"", ""polity"", ""polity2""))"
+"0","region.codes$ccode <- countrycode(region.codes$M49.Code, 'un', 'cown', nomatch = NULL)"
+"0","region.codes <- select(region.codes, c(Region.Code, Region.Name, ccode))"

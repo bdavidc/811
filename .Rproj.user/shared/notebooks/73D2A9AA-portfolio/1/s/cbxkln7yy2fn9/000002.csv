@@ -1,0 +1,2 @@
+"0","igo.state <- filter(igo.state, year >= 1965)"
+"0","polity <- filter(polity, year >=1965)"

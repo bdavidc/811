@@ -1,0 +1,17 @@
+
+library("foreign")
+library("readstata13")
+leg.act <- read.dta13("leg_act.dta")
+cor(leg_act)
+
+x1 = lm(Leg_Act ~ terms, data=leg.act)
+p = predict(x1)
+summary(x1)
+confint(x1)
+r = resid(x1)
+
+plot(leg.act$terms, r)
+
+rho = cor(leg.act$Leg_Act, p)
+
+cor2 = rho*rho

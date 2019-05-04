@@ -1,0 +1,3 @@
+"0","igo.state <- filter(igo.state, year <= 2005)"
+"0","igo.state <- filter(igo.state, year >= 1965)"
+"0","igo.state <- na.omit(igo.state)"

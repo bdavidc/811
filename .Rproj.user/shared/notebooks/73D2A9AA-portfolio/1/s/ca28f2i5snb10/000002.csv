@@ -1,0 +1,7 @@
+"0","interstate.war <- read.csv(""Inter-StateWarData_v4.0.csv"")"
+"0","intrastate.war <- read.csv(""Intra-StateWarData_v4.1.csv"")"
+"0","economic.data <- read.csv(""API_NY.GDP.MKTP.CD_DS2_en_csv_v2_10224782.csv"")"
+"0","country.code <- read.csv(""COW country codes.csv"")"
+"0","igo.state <- read.csv(""IGO_stateunit_v2.3.csv"")"
+"0","polity <- read.csv(""p4v2017.csv"")"
+"0","region.codes <- read.csv(""Region Codes.csv"")"

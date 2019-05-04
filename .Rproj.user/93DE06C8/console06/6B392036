@@ -1,0 +1,118 @@
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 Repo[?1034hDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ [KDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git add .
+warning: CRLF will be replaced by LF in API_NY.GDP.MKTP.CD_DS2_en_csv_v2_10224782.csv.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in Region Codes.csv.
+The file will have its original line endings in your working directory
+warning: CRLF will be replaced by LF in p4v2017.csv.
+The file will have its original line endings in your working directory
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stash
+Saved working directory and index state WIP on master: 09ba4a4 Added ggplot and question
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git revert[K[K[K[K[K[Ko[Kpull -[K09ba4a4
+fatal: '09ba4a4' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git commit
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 2 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+Untracked files:
+	[31m.Rhistory[m
+	[31m.Rproj.user/[m
+
+nothing added to commit but untracked files present
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git pull
+remote: Enumerating objects: 14, done.[K
+remote: Counting objects:   7% (1/14)   [Kremote: Counting objects:  14% (2/14)   [Kremote: Counting objects:  21% (3/14)   [Kremote: Counting objects:  28% (4/14)   [Kremote: Counting objects:  35% (5/14)   [Kremote: Counting objects:  42% (6/14)   [Kremote: Counting objects:  50% (7/14)   [Kremote: Counting objects:  57% (8/14)   [Kremote: Counting objects:  64% (9/14)   [Kremote: Counting objects:  71% (10/14)   [Kremote: Counting objects:  78% (11/14)   [Kremote: Counting objects:  85% (12/14)   [Kremote: Counting objects:  92% (13/14)   [Kremote: Counting objects: 100% (14/14)   [Kremote: Counting objects: 100% (14/14), done.[K
+remote: Compressing objects:  14% (1/7)   [Kremote: Compressing objects:  28% (2/7)   [Kremote: Compressing objects:  42% (3/7)   [Kremote: Compressing objects:  57% (4/7)   [Kremote: Compressing objects:  71% (5/7)   [Kremote: Compressing objects:  85% (6/7)   [Kremote: Compressing objects: 100% (7/7)   [Kremote: Compressing objects: 100% (7/7), done.[K
+Unpacking objects:   9% (1/11)   Unpacking objects:  18% (2/11)   Unpacking objects:  27% (3/11)   Unpacking objects:  36% (4/11)   Unpacking objects:  45% (5/11)   Unpacking objects:  54% (6/11)   Unpacking objects:  63% (7/11)   Unpacking objects:  72% (8/11)   Unpacking objects:  81% (9/11)   remote: Total 11 (delta 4), reused 11 (delta 4), pack-reused 0[K
+Unpacking objects:  90% (10/11)   Unpacking objects: 100% (11/11)   Unpacking objects: 100% (11/11), done.
+From https://github.com/bdavidc/811
+   f6e655d..6ca7fc4  master     -> origin/master
+Auto-merging portfolio.Rmd
+CONFLICT (content): Merge conflict in portfolio.Rmd
+Automatic merge failed; fix conflicts and then commit the result.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stash apply
+portfolio.Rmd: needs merge
+unable to refresh index
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git merge
+error: Merging is not possible because you have unmerged files.
+[33mhint: Fix them up in the work tree, and then use 'git add/rm <file>'[m
+[33mhint: as appropriate to mark resolution and make a commit.[m
+fatal: Exiting because of an unresolved conflict.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stah[Ksh
+portfolio.Rmd: needs merge
+portfolio.Rmd: needs merge
+portfolio.Rmd: unmerged (edcb360834550bc269dd3232263e32ac542a7f82)
+portfolio.Rmd: unmerged (82b2134fcde850fd468cb205857df29f823d9bc4)
+portfolio.Rmd: unmerged (8fcde80a5b9212b6d2d7b69fc2c55bd46e82d63f)
+fatal: git-write-tree: error building trees
+Cannot save the current index state
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stash apply
+portfolio.Rmd: needs merge
+unable to refresh index
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git merge
+error: Merging is not possible because you have unmerged files.
+[33mhint: Fix them up in the work tree, and then use 'git add/rm <file>'[m
+[33mhint: as appropriate to mark resolution and make a commit.[m
+fatal: Exiting because of an unresolved conflict.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git pull origin/master
+error: Pulling is not possible because you have unmerged files.
+[33mhint: Fix them up in the work tree, and then use 'git add/rm <file>'[m
+[33mhint: as appropriate to mark resolution and make a commit.[m
+fatal: Exiting because of an unresolved conflict.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git add .
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git commit
+hint: Waiting for your editor to close the file... [?2004herror: There was a problem with the editor 'vi'.
+Please supply the message using either -m or -F option.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git commit -m
+error: switch `m' requires a value
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git commit -m Trying to fix the merge problem
+fatal: cannot do a partial commit during a merge.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stash apply
+warning: Cannot merge binary files: Figs/summary-plot-1.png (Updated upstream vs. Stashed changes)
+warning: Cannot merge binary files: Figs/summary-fig-1.png (Updated upstream vs. Stashed changes)
+Auto-merging portfolio.html
+CONFLICT (content): Merge conflict in portfolio.html
+Auto-merging portfolio.Rmd
+CONFLICT (content): Merge conflict in portfolio.Rmd
+Auto-merging Figs/summary-plot-1.png
+CONFLICT (add/add): Merge conflict in Figs/summary-plot-1.png
+Auto-merging Figs/summary-fig-1.png
+CONFLICT (add/add): Merge conflict in Figs/summary-fig-1.png
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git stash apply
+Figs/summary-fig-1.png: needs merge
+Figs/summary-plot-1.png: needs merge
+portfolio.Rmd: needs merge
+portfolio.html: needs merge
+unable to refresh index
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git merge
+error: Merging is not possible because you have unmerged files.
+[33mhint: Fix them up in the work tree, and then use 'git add/rm <file>'[m
+[33mhint: as appropriate to mark resolution and make a commit.[m
+fatal: Exiting because of an unresolved conflict.
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git p[Kadd 
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ git add .
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ gid[Kt stash apply
+warning: Cannot merge binary files: Figs/summary-plot-1.png (Updated upstream vs. Stashed changes)
+warning: Cannot merge binary files: Figs/summary-fig-1.png (Updated upstream vs. Stashed changes)
+Auto-merging portfolio.html
+CONFLICT (content): Merge conflict in portfolio.html
+Auto-merging portfolio.Rmd
+CONFLICT (content): Merge conflict in portfolio.Rmd
+Auto-merging Figs/summary-plot-1.png
+CONFLICT (add/add): Merge conflict in Figs/summary-plot-1.png
+Auto-merging Figs/summary-fig-1.png
+CONFLICT (add/add): Merge conflict in Figs/summary-fig-1.png
+]0;~/Documents/UW-Madison/Spring 2019/PS 811/PS 811 RepoDavids-MacBook-Pro-9:PS 811 Repo bdavidc1$ 

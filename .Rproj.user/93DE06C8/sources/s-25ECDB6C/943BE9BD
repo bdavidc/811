@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548692068556.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "943BE9BD",
+    "lastKnownWriteTime" : 4325251872,
+    "last_content_update" : 1548692068556,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "374F94C0",
+        "caption" : "leg_act",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=leg_act&cache_key=374F94C0",
+        "displayedObservations" : 20,
+        "environment" : "",
+        "object" : "leg_act",
+        "preview" : 0,
+        "totalObservations" : 20,
+        "variables" : 2
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
